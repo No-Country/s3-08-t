@@ -57,7 +57,7 @@ export const LoginScreen = () => {
        errors={errors.password} />
 
       <CustomButton 
-      title='Iniciar Sesion'
+      title='Iniciar Sesión'
       onPress= {handleSubmit}
 
       />
