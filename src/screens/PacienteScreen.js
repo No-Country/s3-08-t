@@ -32,6 +32,32 @@ export const PacienteScreen = () => {
         </View>
         {/* TextInput buscar - end */}
         
+        {/* Label + input */}
+        <Text style={styles.text4}>Examenes</Text>
+        <View style={styles.container4}>
+          <Image source={require('../../assets/img1.png')} />
+          <Image source={require('../../assets/img2.png')} />
+        </View>
+        
+        {/* Label + input */}
+        <Text style={styles.text4}>Doctores</Text>
+        <TextInput
+          style={styles.input1}
+          placeholder="buscar"
+          placeholderTextColor='#fff'
+          selectionColor={'#40B590'}
+        />
+        
+        {/* Label + input */}
+        <Text style={styles.text4}>Mis citas</Text>
+        <TextInput
+          style={styles.input1}
+          placeholder="buscar"
+          placeholderTextColor='#fff'
+          selectionColor={'#40B590'}
+        />
+        
+        {/* Plus icon */}
         <View style={styles.plusImage}>
           <Image source={require('../../assets/plus.png')} />
         </View>
@@ -103,7 +129,7 @@ const styles = StyleSheet.create({
     
     paddingLeft: 27,
   },
-   
+  // buscar icon
   imageStyle: {
     padding: 10,
     margin: 13,
@@ -117,6 +143,28 @@ const styles = StyleSheet.create({
   
   // plus icon
   plusImage: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 25
+  },
+  // examenes, doctores, mis citas
+  text4: {
+    fontSize: 16,
+    fontFamily: 'robotoBold',
+    marginVertical: 12,
+  },
+  input1: {
+    fontSize: 16,
+    fontFamily: 'robotoLight',
+    color: '#fff',
+    backgroundColor: 'rgba(64, 181, 144, 0.5)',
+    height: 50,
+    borderRadius: 13,
+    paddingLeft: 27
+  },
+  // examenes images
+  container4: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 })
