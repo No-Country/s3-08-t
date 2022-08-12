@@ -20,18 +20,21 @@ export const PacienteScreen = () => {
         {/* TextInput buscar - start */}
         {/* https://reactnativecode.com/place-image-icon-inside-textinput-left-side/ */}
         <View style={styles.container3}>
-          <View style={styles.SectionStyle}>
+          <View style={styles.sectionStyle}>
             <TextInput
               style={{flex:1, fontSize: 20, fontFamily: 'robotoLight', color: '#fff'}}
               placeholder="buscar"
               placeholderTextColor='#fff'
               selectionColor={'#40B590'}
             />
-            <Image source={require('../../assets/buscar.png')} style={styles.ImageStyle} />
+            <Image source={require('../../assets/buscar.png')} style={styles.imageStyle} />
           </View>
         </View>
         {/* TextInput buscar - end */}
         
+        <View style={styles.plusImage}>
+          <Image source={require('../../assets/plus.png')} />
+        </View>
       </View>
       
       
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
     //margin: 10,
   },
   
-  SectionStyle: {
+  sectionStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -101,7 +104,7 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
   },
    
-  ImageStyle: {
+  imageStyle: {
     padding: 10,
     margin: 13,
     height: 56,
@@ -111,4 +114,9 @@ const styles = StyleSheet.create({
   },
   // TextInput buscar - end
   // **********************
+  
+  // plus icon
+  plusImage: {
+    alignItems: 'center'
+  }
 })
