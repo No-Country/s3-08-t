@@ -1,28 +1,8 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
-import React, { useState } from 'react'
-
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
-
+import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
+import React from 'react'
 
 
 export const PacienteScreen = () => {
-
-  const validationSchema = Yup.object().shape({
-    username: Yup
-      .string()
-      .required('Nombre de Usuario Requerido'),
-    password: Yup
-      .string()
-      .required('Clave Requerida')
-      .matches(
-        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        'La Clave debe tener al menos 8 caracteres, una mayuscula, un numero y un caracter especial'
-      ),
-
-  })
 
   return (
     <ScrollView >
@@ -37,6 +17,8 @@ export const PacienteScreen = () => {
       <View style={styles.container2}>
         <Text style={styles.text3}>Mi Historial</Text>
         
+        {/* TextInput buscar - start */}
+        {/* https://reactnativecode.com/place-image-icon-inside-textinput-left-side/ */}
         <View style={styles.container3}>
           <View style={styles.SectionStyle}>
             <TextInput
@@ -48,6 +30,7 @@ export const PacienteScreen = () => {
             <Image source={require('../../assets/buscar.png')} style={styles.ImageStyle} />
           </View>
         </View>
+        {/* TextInput buscar - end */}
         
       </View>
       
@@ -87,13 +70,16 @@ const styles = StyleSheet.create({
   container2: {
     paddingHorizontal:21,
   },
+  
+  //Mi historial
   text3: {
     fontSize: 20,
     fontFamily: 'robotoMedium',
     marginVertical: 12,
   },
   
-  
+  // ************************
+  // TextInput buscar - start
   container3: {
     flex: 1,
     justifyContent: 'center',
@@ -123,4 +109,6 @@ const styles = StyleSheet.create({
     resizeMode : 'stretch',
     alignItems: 'center'
   },
+  // TextInput buscar - end
+  // **********************
 })
