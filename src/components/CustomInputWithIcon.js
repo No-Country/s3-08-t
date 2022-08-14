@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
        
     },
     customInputTitle:{
-      fontFamily:'sans-serif',
+      fontFamily:'robotoLight',
       paddingHorizontal:10,
       
 
     },
     customInputData:{
-      fontFamily:'sans-serif', 
+      fontFamily:'robotoLight', 
       fontSize:18,
       borderWidth:0,
       width:'100%'
