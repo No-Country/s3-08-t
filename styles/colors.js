@@ -3,7 +3,8 @@ export const COLORS = {
     secondary: '#028960',
     tertyary: '#9FDAC7',
     error: 'red',
-    white: 'white'
+    white: 'white',
+    black: 'black'
     
     
     

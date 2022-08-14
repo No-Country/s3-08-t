@@ -2,6 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import { CustomButton } from "../components/CustomButton";
 import { useNavigation } from "@react-navigation/native";
+import { COLORS } from "../../styles/colors";
 
 export const InicioScreen = () => {
     const navigation = useNavigation();
@@ -23,8 +24,8 @@ export const InicioScreen = () => {
       </View>
 
       <View>
-        <CustomButton title="Ingresar" onPress={handleClickLogin} />
-        <CustomButton title="Crear Una cuenta" onPress={handleClickRegister} />
+        <CustomButton title="Ingresar" onPress={handleClickLogin} backColor={{backgroundColor:'#40b590'}} colorText={{color: COLORS.black}} />
+        <CustomButton title="Crear Una cuenta" onPress={handleClickRegister} backColor={{backgroundColor:'#40b590'}} colorText={{color: COLORS.black}}/>
       </View>
     </View>
   );
