@@ -22,7 +22,7 @@ export const DoctorCard = (porps) => {
 
                     <View>
                         <View>
-                            <Text style={{ justifyContent: 'flex-start',  fontWeight: 500, }}>Doctor {porps.name}</Text>
+                            <Text style={{ justifyContent: 'flex-start',  fontWeight: "500", }}>Doctor {porps.name}</Text>
                             <Text style={{ justifyContent: 'flex-start', width: 200 }}>Especialidad {porps.especialidad}</Text>
                         </View>
 
