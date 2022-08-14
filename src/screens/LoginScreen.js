@@ -12,7 +12,7 @@ import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
 
 export const LoginScreen = () => {
 const user = useSelector(state=>state.user);
-const [toggleIcon, setToggleIcon] = useState(false);
+const [toggleIcon, setToggleIcon] = useState(true);
 
   const dispatch = useDispatch();
   
@@ -56,7 +56,7 @@ const [toggleIcon, setToggleIcon] = useState(false);
        onBlur={handleBlur('userName')}
        value={values.userName}
        title='Usuario'
-       placeholder='Usuario....' 
+       placeholder='USUARIO' 
        errors={errors.userName}
        />
       
@@ -76,7 +76,7 @@ const [toggleIcon, setToggleIcon] = useState(false);
        value={values.password}
        secureTextEntry={toggleIcon? true : false}
        title='Clave'
-       placeholder='......' 
+       placeholder='CLAVE' 
        errors={errors.password} 
        toggleIcon={toggleIcon}
        setToggleIcon={setToggleIcon}/>

@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     },
     customButtonText:{
         color:COLORS.white,
-        fontSize:22
+        fontSize:22,
+        fontFamily:'robotoLight'
     },
 });
 
