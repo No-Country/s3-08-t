@@ -12,7 +12,7 @@ export const HeaderPatient = (props) => {
 
                     <View style={{ flexDirection: 'column', alignItems:'flex-end'}}>
                         <Text>Buenas Noches,</Text>
-                        <Text style={{fontWeight:500}}>{props.name}!</Text>
+                        <Text style={{fontWeight:"500"}}>{props.name}!</Text>
                     </View>
                 </View>
             </ScrollView>
