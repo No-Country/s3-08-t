@@ -1,53 +1,66 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
-
+import { loginUser } from '../redux/features/user/userActions';
+import { ModalNotifications } from '../components/ModalNotifications'; 
+import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
 
 
 export const LoginScreen = () => {
+const user = useSelector(state=>state.user);
+const [toggleIcon, setToggleIcon] = useState(true);
 
-  
+  const dispatch = useDispatch();
   
     const validationSchema = Yup.object().shape({
-      username: Yup
+      userName: Yup
         .string()
         .required('Nombre de Usuario Requerido'),
       password: Yup
       .string()
       .required('Clave Requerida')
-      .matches(
-          /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-          'La Clave debe tener al menos 8 caracteres, una mayuscula, un numero y un caracter especial'
-      ),
+      //.matches(
+      //    /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      //    'La Clave debe tener al menos 8 caracteres, una mayuscula, un numero y un caracter especial'
+      //),
 
       
     })
 
+    const handleLogin = (values)=>{
+      dispatch(loginUser(values))
+    };
+
+    
+   
     return (
     <ScrollView > 
+      {user.error&&<ModalNotifications title='Error' msg='Usuario o Contraseña Incorrectos'></ModalNotifications>}
+      <Text>{user.userToken?'Logueado':'No Logueado'}</Text>
         <View style={{alignItems:'center', justifyContent:'center', marginBottom:50, marginTop:50}}>
     <Image style={styles.loginLogo} source={require('../../assets/login.png')} />
     </View>  
       <Formik
             validationSchema={validationSchema}
-            initialValues={{ username: '', password: '' }}
-            onSubmit={values => console.log(values)}
+            initialValues={{ userName: '', password: '' }}
+            onSubmit={values => handleLogin(values)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (   
               <>
       <CustomInput
-       onChangeText={handleChange('username')}
-       onBlur={handleBlur('username')}
-       value={values.username}
+       onChangeText={handleChange('userName')}
+       onBlur={handleBlur('userName')}
+       value={values.userName}
        title='Usuario'
-       placeholder='Usuario....' 
-       errors={errors.username}/>
+       placeholder='USUARIO' 
+       errors={errors.userName}
+       />
       
-      <CustomInput
+      {/*<CustomInput
        onChangeText={handleChange('password')}
        onBlur={handleBlur('password')}
        value={values.password}
@@ -55,6 +68,19 @@ export const LoginScreen = () => {
        title='Clave'
        placeholder='......' 
        errors={errors.password} />
+*/}
+
+      <CustomInputWithIcon
+       onChangeText={handleChange('password')}
+       onBlur={handleBlur('password')}
+       value={values.password}
+       secureTextEntry={toggleIcon? true : false}
+       title='Clave'
+       placeholder='CLAVE' 
+       errors={errors.password} 
+       toggleIcon={toggleIcon}
+       setToggleIcon={setToggleIcon}/>
+
 
       <CustomButton 
       title='Iniciar Sesion'
@@ -68,7 +94,6 @@ export const LoginScreen = () => {
       </ScrollView>
   )
 }
-
 
 const styles = StyleSheet.create({
 loginLogo:{
