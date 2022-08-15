@@ -8,10 +8,13 @@ import { CustomButton } from '../components/CustomButton';
 import { loginUser } from '../redux/features/user/userActions';
 import { ModalNotifications } from '../components/ModalNotifications'; 
 import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
+import { useNavigation } from '@react-navigation/native';
 
 
 export const LoginScreen = () => {
-const user = useSelector(state=>state.user);
+const {error, loading, success, userToken} = useSelector(state=>state.user);
+const navigation = useNavigation();
+
 const [toggleIcon, setToggleIcon] = useState(true);
 
   const dispatch = useDispatch();
@@ -35,12 +38,15 @@ const [toggleIcon, setToggleIcon] = useState(true);
       dispatch(loginUser(values))
     };
 
-    
+    useEffect(()=>{
+      if(success) navigation.navigate('paciente');
+    },[success])
    
     return (
     <ScrollView > 
-      {user.error&&<ModalNotifications title='Error' msg='Usuario o Contraseña Incorrectos'></ModalNotifications>}
-      <Text>{user.userToken?'Logueado':'No Logueado'}</Text>
+      {error&&<ModalNotifications title='Error' msg='Usuario o Contraseña Incorrectos'></ModalNotifications>}
+      
+      <Text>{userToken?'Logueado':'No Logueado'}</Text>
         <View style={{alignItems:'center', justifyContent:'center', marginBottom:50, marginTop:50}}>
     <Image style={styles.loginLogo} source={require('../../assets/login.png')} />
     </View>  

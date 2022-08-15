@@ -13,12 +13,6 @@ import { LandingScreen} from "./src/screens/LandingScreen";
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 import { InicioScreen } from "./src/screens/InicioScreen";
-import { StatusBar } from "react-native-web";
-import Footer from './src/components/Footer';
-import { navigationRef } from './RootNavigation'
-import SobreDr from "./src/screens/SobreDr";
- 
-
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -50,7 +44,9 @@ export default function App() {
           <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
           <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
-          <Stack.Screen 
+          <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} />
+     
+     <Stack.Screen 
           name="ConfirmaCita" 
           component={ConfCita} 
           options = {{
