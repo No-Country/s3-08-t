@@ -7,6 +7,12 @@ import HoraCita from "./src/screens/HoraCita";
 import Header from "./src/components/Header";
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { DoctorsCards } from "./src/screens/DoctorsCards";
+import { LandingScreen} from "./src/screens/LandingScreen";
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
+import { InicioScreen } from "./src/screens/InicioScreen";
 import { StatusBar } from "react-native-web";
 import Footer from './src/components/Footer';
 import { navigationRef } from './RootNavigation'
@@ -27,14 +33,17 @@ export default function App() {
   return (
    <>
     {loaded&&
-    
-      <SafeAreaView style={{flex: 1, justifyContent: "center",}}>
+      <Provider store={store}>
+      <SafeAreaView style={{flex: 1, justifyContent: "center"}}>
       <NavigationContainer style={{paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}
       ref= {navigationRef}
       >
       <Stack.Navigator 
       initialRouteName="ConfirmaCita"
       headerMode= "screen">
+          <Stack.Screen name="landing" component={LandingScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ headerShown: false }} />
           <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
           <Stack.Screen 
@@ -50,6 +59,7 @@ export default function App() {
       
       </NavigationContainer>
     </SafeAreaView>
+    </Provider>
    
   }</>
   );
