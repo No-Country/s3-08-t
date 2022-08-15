@@ -8,7 +8,6 @@ import { CustomButton } from '../components/CustomButton';
 import { loginUser } from '../redux/features/user/userActions';
 import { ModalNotifications } from '../components/ModalNotifications'; 
 import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
-import { ProfileScreen } from './ProfileScreen';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -40,7 +39,7 @@ const [toggleIcon, setToggleIcon] = useState(true);
     };
 
     useEffect(()=>{
-      if(success) navigation.navigate('profile');
+      if(success) navigation.navigate('paciente');
     },[success])
    
     return (
