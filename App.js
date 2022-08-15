@@ -11,7 +11,11 @@ import { LandingScreen} from "./src/screens/LandingScreen";
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 import { InicioScreen } from "./src/screens/InicioScreen";
+
+import {ProfileScreen} from './src/screens/ProfileScreen';
+
 import { PacienteScreen } from "./src/screens/PacienteScreen";
+
 
 
 export default function App() {
@@ -37,8 +41,12 @@ export default function App() {
           <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ headerShown: false }} />
           <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
+
+          <Stack.Screen name="profile" component={ProfileScreen} options={{ headerShown: false }} />
+
           <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} />
      
+
       </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
