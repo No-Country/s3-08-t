@@ -1,24 +1,35 @@
-import { View, Text,  StyleSheet, TouchableOpacity } from 'react-native';
-import * as RootNavigation  from "../../RootNavigation"
+import { View, Text,  StyleSheet, TouchableOpacity, Image } from 'react-native';
+import * as RootNavigation  from "../../RootNavigation";
+import React from "react";
+import InicioScreen from  "../screens/InicioScreen";
+
+
+
 
 const Footer = () => {
     return (
         <View style={styles.footer}>
-            {/*Cambiar por Historial*/ }
+            {/*HISTORIAL*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("login")} >
-                <Text>Historial</Text>
+            onPress={()=> RootNavigation.navigate("Selección de doctor")} >
+               <Image style={styles.icon} source= { require("../../assets/Images/account.png") }/>
             </TouchableOpacity>
+            {/*ADD CITA*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("register")} >
-                <Text>Marcar Cita</Text>
+            onPress={()=> RootNavigation.navigate("sobreDr")} >
+                <Image style={styles.icon} source= { require("../../assets/Images/addNew.png") }/>
             </TouchableOpacity>
             <TouchableOpacity 
             style= {styles.button}
             onPress={()=> RootNavigation.navigate("ConfirmaCita")} >
-                <Text>Turnos de cita</Text>
+                <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
+            </TouchableOpacity>
+            <TouchableOpacity 
+            style= {styles.button}
+            onPress={()=> RootNavigation.navigate("inicio")} >
+                <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
             </TouchableOpacity>
         </View>
     )
@@ -30,11 +41,17 @@ footer: {
     height: 80,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
+    borderRadiusLeft: 20
+    
 
 },
 button: {
     padding: 20,
+},
+icon: {
+    width: 30,
+    height: 30
 }
 
 })

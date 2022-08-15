@@ -6,7 +6,8 @@ export const HeaderPatient = (props) => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}> 
+                
+               {/*<View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}> 
 
                 <Image style={styles.avatarPatient} source={require('../../assets/profileAvatar.png')}></Image>
 
@@ -14,7 +15,7 @@ export const HeaderPatient = (props) => {
                         <Text>Buenas Noches,</Text>
                         <Text style={{fontWeight:"500"}}>{props.name}!</Text>
                     </View>
-                </View>
+    </View>*/}
             </ScrollView>
         </SafeAreaView>
     )

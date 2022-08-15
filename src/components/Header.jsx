@@ -7,7 +7,7 @@ import Logo from '../../assets/Images/Logo.png';
 const Header = (props) => {
     return(
         <View style={styles.header}>
-            <Image source={Logo} style={{margin : "auto", background:"black"}} />
+            <Image source={Logo} style={{margin : "auto"}} />
         </View>
     )
 }
@@ -18,6 +18,7 @@ const styles = StyleSheet.create ({
         marginTop: 20,
         justifyContent: "center",
         alignItems: "center",
+       backgroundColor: "#DFF3EC"
     },
 })
 

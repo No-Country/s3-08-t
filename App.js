@@ -7,7 +7,7 @@ import HoraCita from "./src/screens/HoraCita";
 import Header from "./src/components/Header";
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { DoctorsCards } from "./src/screens/DoctorsCards";
 import { LandingScreen} from "./src/screens/LandingScreen";
 import { Provider } from 'react-redux';
@@ -16,6 +16,9 @@ import { InicioScreen } from "./src/screens/InicioScreen";
 import { StatusBar } from "react-native-web";
 import Footer from './src/components/Footer';
 import { navigationRef } from './RootNavigation'
+import SobreDr from "./src/screens/SobreDr";
+ 
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -39,11 +42,12 @@ export default function App() {
       ref= {navigationRef}
       >
       <Stack.Navigator 
-      initialRouteName="ConfirmaCita"
+      initialRouteName="inicio"
       headerMode= "screen">
           <Stack.Screen name="landing" component={LandingScreen} options={{ headerShown: false }} />
           <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ headerShown: false }} />
+          <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
+          <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
           <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
           <Stack.Screen 

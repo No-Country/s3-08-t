@@ -4,7 +4,7 @@ import { Text,  StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     // Size
     small: {
-        fontSize: 10,
+        fontSize: 16,
     },
     medium : {
         fontSize: 20,
@@ -27,23 +27,42 @@ const styles = StyleSheet.create({
     mt24: {
         marginTop: 24,
     },
+    mt12: {
+        marginTop: 12,
+    },
     // Align
     left: {
         textAlign: "left",
     },
+    
     poppinsBold: {
         fontFamily: "poppinsBold",
     },
     robotoRegular: {
-        fontFamily: "robotoRegular"
+        fontFamily: "robotoRegular",
     }, 
     textAlignCenter: {
         textAlign: "center",
-    }
+    },
+    
     
   });
 
-  export default function StyledText ({small, medium, large, primary, secondary, bold, mt24, left, children, poppinsBold , robotoRegular }) {
+  export default function StyledText ({small,
+     medium, 
+     large,
+      primary, 
+      secondary, 
+      bold, 
+      mt24, 
+      left, 
+      children,
+       poppinsBold, 
+       robotoRegular,
+       textAlignCenter,
+       mt12
+    
+    }) {
     
     const style = [
         small && styles.small,
@@ -56,7 +75,8 @@ const styles = StyleSheet.create({
         left && styles.left,
         poppinsBold && styles.poppinsBold,
         robotoRegular&& styles.robotoRegular,
-       
+        textAlignCenter && styles.textAlignCenter,
+       mt12 && styles.mt12
     ]
     
     return (

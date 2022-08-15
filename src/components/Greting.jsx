@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
      
     },
     image: {
-        width: 70,
-        height: 100,
+        width: 60,
+        height: 60,
 
     }
 
 })
 
-const Header = () => {
+const Header = (props) => {
     // Saludos
     var myDate = new Date();
     var hours= myDate.getHours();
@@ -34,14 +34,14 @@ const Header = () => {
     return (
         <View style = {{flexDirection: "row", justifyContent: 'space-between'}}>
                 <View>
-                    <Image style={styles.image} source= { require("../../assets/doctor.png") } />
+                    <Image style={styles.image} source= { require("../../assets/Images/profile.png") } />
                 </View>
                 <View >
                     <StyledText medium secondary>
-                        Buenas {greet}! 
+                        Buenas {greet},
                     </StyledText>
                     <StyledText medium secondary bold>
-                        Maria das Flores!
+                        {props.name}!
                     </StyledText>
                 </View>
             </View>

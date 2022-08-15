@@ -1,13 +1,14 @@
 import { View, Text,  StyleSheet, Image } from 'react-native';
 import StyledText from "../../styles/styleText";
 import { CustomButton } from "../components/CustomButton" ;
-import Header from '../components/Greting';
+import Greting from '../components/Greting';
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 24,
-      backgroundColor: "#F2F2F2",
+      backgroundColor: "#DFF3EC",
+      
      
     },
     image: {
@@ -26,22 +27,21 @@ const ConfCita = () => {
    
     return (
         <View style={styles.container}>
-            <Header/>
+           
+            <Greting name= "Ezequiel"/>
             <StyledText medium  bold mt24>
                 Informacion de la Cita
            </StyledText>
-           <View>
+           <View style= {{marginBottom: 230, marginTop: 12}}>
            <StyledText medium secondary poppinsBold>Horario: <StyledText robotoRegular medium primary>08:00 </StyledText> </StyledText>
            <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>Marco Souza </StyledText> </StyledText>
            <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>Cardiologista</StyledText></StyledText>
-           <CustomButton
+           
+           </View>
+           <CustomButton 
            title='Confirmar Cita'
            onPress= {handleConfirmar}
            />
-
-           </View>
-           
-
       
         </View>
     )
