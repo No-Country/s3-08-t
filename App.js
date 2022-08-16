@@ -6,7 +6,7 @@ import ConfCita from "./src/screens/ConfCita";
 import HoraCita from "./src/screens/HoraCita";
 import Header from "./src/components/Header";
 import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { DoctorsCards } from "./src/screens/DoctorsCards";
 import { LandingScreen} from "./src/screens/LandingScreen";
@@ -19,8 +19,11 @@ import PacienteScreen from "./src/screens/PacienteScreen";
 import Footer from "./src/components/Footer";
 
 
+import StackNavigator from "./src/components/Navigation/StackNavigator";
+
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  
+
 
   const [loaded] = useFonts({
     robotoMedium: require('./assets/fonts/Roboto-Medium.ttf'),
@@ -32,6 +35,8 @@ export default function App() {
     poppinsBlack:  require('./assets/fonts/Poppins-Black.ttf'),
     });
 
+    
+
   return (
    <>
     {loaded&&
@@ -40,27 +45,8 @@ export default function App() {
       <NavigationContainer style={{paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}
       ref= {navigationRef}
       >
-      <Stack.Navigator 
-      initialRouteName="inicio"
-      headerMode= "screen">
-          <Stack.Screen name="landing" component={LandingScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
-          <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
-          <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
-          {/* <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} /> */}
-     
-     <Stack.Screen 
-          name="ConfirmaCita" 
-          component={ConfCita} 
-          options = {{
-              header:  () => <Header/>
-          }}
-          />
-          <Stack.Screen name="HoraCita" component={HoraCita}/>
-      </Stack.Navigator>
-      <Footer/>
+      <StackNavigator />
+      
       
       </NavigationContainer>
     </SafeAreaView>
