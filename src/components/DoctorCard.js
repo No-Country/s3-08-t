@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, SafeAreaView, Image, StyleSheet } from 'react-native'
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -8,23 +8,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
-export const DoctorCard = (porps) => { 
-
-    const [state, setState] = useState(initialState)
-
-   
+export const DoctorCard = (porps) => {
 
     return (
 
-       
+
 
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.styledCard}>
                     <Image style={styles.avatarDr} source={require('../../assets/doctor.png')}></Image>
                     <View>
-
-
                         <View>
                             <Text style={styles.boldDoctorText}>Doctor {porps.name}</Text>
                             <Text style={styles.doctorTypeText}>Especialidad {porps.especialidad}</Text>
