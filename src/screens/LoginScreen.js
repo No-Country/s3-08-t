@@ -38,10 +38,7 @@ const [toggleIcon, setToggleIcon] = useState(true);
       dispatch(loginUser(values))
     };
 
-    useEffect(()=>{
-      if(success) navigation.navigate('paciente');
-    },[success])
-   
+     
     return (
     <ScrollView > 
       {error&&<ModalNotifications title='Error' msg='Usuario o Contraseña Incorrectos'></ModalNotifications>}
