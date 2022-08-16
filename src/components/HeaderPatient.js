@@ -6,13 +6,13 @@ export const HeaderPatient = (props) => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around'}}> 
+                <View style={styles.headerStyled}> 
 
                 <Image style={styles.avatarPatient} source={require('../../assets/profileAvatar.png')}></Image>
 
-                    <View style={{ flexDirection: 'column', alignItems:'flex-end'}}>
+                    <View style={styles.welocomeCtn}>
                         <Text>Buenas Noches,</Text>
-                        <Text style={{fontWeight:500}}>{props.name}!</Text>
+                        <Text style={styles.boldText}>{props.name}!</Text>
                     </View>
                 </View>
             </ScrollView>
@@ -28,6 +28,25 @@ const styles = StyleSheet.create({
         height:72,
         borderRadius:50,
         margin:10
-    }
+    },
+
+    headerStyled:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-around'
+    },
+
+    welocomeCtn:{ 
+        flexDirection: 'column',
+        alignItems:'flex-end'
+    },
+
+    boldText:{
+        fontWeight:500,
+        }
+
+    
+
+
 })
 
