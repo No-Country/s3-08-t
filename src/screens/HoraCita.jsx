@@ -1,5 +1,6 @@
 import { View, Text,  StyleSheet, Image } from 'react-native';
 import StyledText from "../../styles/styleText";
+import Footer from '../components/Footer';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,6 +27,7 @@ if (hours < 12)
         greet = "noches";
 
     return (
+        <>
         <View style={styles.container}>
             <View style = {{flexDirection: "row", justifyContent: 'space-between'}}>
                 <View>
@@ -44,6 +46,8 @@ if (hours < 12)
                 Informacion de la Cita
            </StyledText>
         </View>
+        <Footer />
+        </>
     )
 }
 

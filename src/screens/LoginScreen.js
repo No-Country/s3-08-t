@@ -43,7 +43,6 @@ const [toggleIcon, setToggleIcon] = useState(true);
     <ScrollView > 
       {error&&<ModalNotifications title='Error' msg='Usuario o Contraseña Incorrectos'></ModalNotifications>}
       
-      <Text>{userToken?'Logueado':'No Logueado'}</Text>
         <View style={{alignItems:'center', justifyContent:'center', marginBottom:50, marginTop:50}}>
     <Image style={styles.loginLogo} source={require('../../assets/login.png')} />
     </View>  

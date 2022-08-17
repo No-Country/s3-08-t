@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 
     boldDoctorText: {
         justifyContent: 'flex-start',
-        fontWeight: 500,
+        fontWeight: "500",
     },
 
     doctorTypeText: {
