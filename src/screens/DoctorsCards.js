@@ -3,6 +3,7 @@ import React from 'react';
 import { DoctorCard } from '../components/DoctorCard';
 import { HeaderPatient } from '../components/HeaderPatient';
 import Greting from '../components/Greting'
+import Footer from '../components/Footer';
 
 
 
@@ -15,8 +16,8 @@ export const DoctorsCards = () => {
 
     return (
 
-        <SafeAreaView>
-
+        <>
+    
             <ScrollView>
 
                 <HeaderPatient name='Ezequiel Sanchez' />
@@ -37,11 +38,14 @@ export const DoctorsCards = () => {
                         <DoctorCard name='Jaime Agudelo' especialidad='Neumonologo' />
                         <DoctorCard name='Italo' especialidad='Traumatologo' />
                     </View>
-                
+                    
             </ScrollView>
+            <Footer />
+            
 
-        </SafeAreaView>
-
+        </>
+    
+    
     )
 }
 
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         textAlign: 'center',
-        fontWeight: 500
+        fontWeight: "500"
     },
 
     cardsContainer: {

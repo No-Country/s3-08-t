@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
 
     boldText:{
-        fontWeight:500,
+        fontWeight:"500",
         }
 
     

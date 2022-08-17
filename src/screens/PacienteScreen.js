@@ -1,10 +1,12 @@
 import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
 import React from 'react'
+import Footer from '../components/Footer'
 
 
 export const PacienteScreen = () => {
 
   return (
+    <>
     <ScrollView >
       <View style={styles.container}>
         <Image style={styles.logoDoctor} source={require('../../assets/doctor.png')} />
@@ -65,6 +67,8 @@ export const PacienteScreen = () => {
       
       
     </ScrollView>
+    <Footer />
+    </>
   )
 }
 
