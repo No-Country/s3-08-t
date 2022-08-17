@@ -1,6 +1,7 @@
 import { View, Text,  StyleSheet, Image } from 'react-native';
 import StyledText from "../../styles/styleText";
 import { CustomButton } from "../components/CustomButton" ;
+import Footer from '../components/Footer';
 import Greting from '../components/Greting';
 
 const styles = StyleSheet.create({
@@ -25,7 +26,7 @@ const ConfCita = () => {
         console.log("Confirmado")
     } 
    
-    return (
+    return (<>
         <View style={styles.container}>
            
             <Greting name= "Ezequiel"/>
@@ -44,6 +45,8 @@ const ConfCita = () => {
            />
       
         </View>
+        <Footer />
+        </>
     )
 }
 

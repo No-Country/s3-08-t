@@ -7,6 +7,7 @@ import React from 'react';
 import { DoctorCard } from '../components/DoctorCard';
 
 import Greting from '../components/Greting'
+import Footer from '../components/Footer';
 
 
 
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         textAlign: 'center',
-        fontWeight: 500
+        fontWeight: "500"
     },
 
     cardsContainer: {

@@ -2,6 +2,7 @@ import { View, StyleSheet, Image,ScrollView, } from 'react-native';
 import StyledText from '../../styles/styleText';
 import DoctorCards from "../screens/DoctorsCards";
 import Greting from '../components/Greting';
+import Footer from '../components/Footer';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
 
 const SobreDr = (props) => {
     return (
+        <>
         <ScrollView style={styles.container}>
         <View >
             
@@ -87,6 +89,8 @@ const SobreDr = (props) => {
                 </View>
         </View>
         </ScrollView>
+        <Footer />
+        </>
     )
 }
 

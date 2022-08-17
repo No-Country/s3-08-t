@@ -50,7 +50,7 @@ const StackNavigator = () => {
           </>
           )}
       </Stack.Navigator>
-      <Footer />
+      
       </>
     
     )
