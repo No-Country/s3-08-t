@@ -1,4 +1,5 @@
-import { View, StyleSheet, Image,ScrollView, } from 'react-native';
+
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import StyledText from '../../styles/styleText';
 import DoctorCards from "../screens/DoctorsCards";
 import Greting from '../components/Greting';

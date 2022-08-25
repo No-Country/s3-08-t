@@ -1,7 +1,7 @@
 import { View, Text,  StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as RootNavigation  from "../../RootNavigation";
 import React from "react";
-import InicioScreen from  "../screens/InicioScreen";
+
 
 
 
@@ -26,9 +26,10 @@ const Footer = () => {
             onPress={()=> RootNavigation.navigate("ConfirmaCita")} >
                 <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
             </TouchableOpacity>
+
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("inicio")} >
+            onPress={()=> RootNavigation.navigate("calendario")} >
                 <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
             </TouchableOpacity>
         </View>

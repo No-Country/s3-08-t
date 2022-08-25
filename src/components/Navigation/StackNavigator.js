@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import Header from '../Header';
 import { PacienteScreen } from '../../screens/PacienteScreen';
 import Footer from '../Footer';
+import Calendario from '../../screens/Calendario';
 
 
 
@@ -28,6 +29,7 @@ const StackNavigator = () => {
         <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
         <Stack.Screen name="inicio" component={InicioScreen} options={{ headerShown: false }} />
+        
           
           
         </>):(<>
@@ -36,13 +38,11 @@ const StackNavigator = () => {
         <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
         <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
+        <Stack.Screen name="calendario" component={Calendario}  options={{ header:  () => <Header/> }} />
         
           
-     <Stack.Screen 
-          name="ConfirmaCita" 
-          component={ConfCita} 
-          options = {{
-              header:  () => <Header/>
+     <Stack.Screen name="ConfirmaCita" component={ConfCita} options = {{
+header:  () => <Header/>
           }}
           />
           <Stack.Screen name="HoraCita" component={HoraCita}/>
