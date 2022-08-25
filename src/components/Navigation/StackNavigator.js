@@ -22,9 +22,11 @@ const Stack = createNativeStackNavigator()
 const StackNavigator = () => {
     const {userToken} = useSelector(state=>state.user);
     return (<>
+        
         <Stack.Navigator initialRouteName="inicio" headerMode= "screen">
         {!userToken? (
         <>
+        <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
         <Stack.Screen name="landing" component={LandingScreen} options={{ headerShown: false }} />
         <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
@@ -33,7 +35,6 @@ const StackNavigator = () => {
           
           
         </>):(<>
-         
          
         <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
