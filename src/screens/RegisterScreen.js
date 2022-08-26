@@ -9,15 +9,16 @@ import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
 import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
 import { CustomSelector } from '../components/CustomSelector';
-
+import { registerPatient } from '../redux/features/patient/patientActions';
 
 
 
 export const RegisterScreen = () => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState('TIPO USUARIO');
   const dispatch = useDispatch();
   const us= useSelector(state=>state.user);
-  
+  const [toggleIcon, setToggleIcon] = useState(true);
+
   useEffect(()=>{
     if(us.success){
       console.log('Usuario Cargado')
@@ -27,13 +28,16 @@ export const RegisterScreen = () => {
   
 
   
-    const validationSchema = Yup.object().shape({
+     const validationSchema = Yup.object().shape({
       name: Yup
         .string()
         .required('Campo Nombre Requerido!'),
         email: Yup
         .string()
         .email("Ingrese un email valido!")
+        .required('Campo Email Requerido!'),
+        dni: Yup
+        .number('Numero de Identidad no Valido')
         .required('Campo Email Requerido!'),
         password: Yup
         .string()
@@ -55,27 +59,67 @@ export const RegisterScreen = () => {
 
         city: Yup
         .string()
-        .min(8)
         .required('Campo Ciudad Requerido!'),
+
+        role: Yup
+        .string()
+        ,
+
+        userName: Yup
+        .string()
+        .required('Campo Username Requerido!'),
     })
 
     const handleDispatch= async(values)=>{
+      data==='PACIENTE'? values.role='USER_ROLE' : 
+      data==='DOCTOR'? values.role='DOCTOR_ROLE' :
+      values.role = 'ADMIN_ROLE'     
       
-      console.log(values);
-      console.log(us);
-      dispatch(registerUser(values))
+      const newUser = 
+      {
+          "userName": values.userName,
+          "password": values.password,
+          "role": values.role,
+          "dni":values.dni
+       };
+
+      const newPatient = 
+      {
+         "dni":values.dni,
+         "name": values.name,
+        "email": values.email,
+        "userEmail": values.email,
+        "phoneNumber": values.phone,
+        "address": values.address,
+        "city": values.city,
+        "country": "Colombia"
+       };
+      
+
+
+      //console.log(newUser);
+      console.log(newPatient)
+      await dispatch(registerUser(newUser))
+      await dispatch(registerPatient(newPatient))
       
       
     }
 
+    
+   
+
     return (
+     
+      
       <ScrollView>
-        <View style={{justifyContent:'center', marginTop:50}}>   
+         <View style={{justifyContent:'center', marginTop:30}}>  
       <Text style ={{fontSize:24, textAlign:'center', marginTop: 20, marginBottom:20}}>Crear una Cuenta</Text>
+      
       <Formik
             validationSchema={validationSchema}
-            initialValues={{ name: '', email: '', password: '', phone: '', city:'', address: '', role:'' }}
+            initialValues={{ name: '', email: '', dni:'', userName:'', password: '', phone: '', city:'', address: '', role:'' }}
             onSubmit={(values)=>handleDispatch(values)}
+            //onSubmit={(values)=>console.log(values)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (   
               <>
@@ -83,15 +127,20 @@ export const RegisterScreen = () => {
        onChangeText={handleChange('name')}
        onBlur={handleBlur('name')}
        value={values.name}
-       //title='Nombre'
        placeholder='NOMBRE' 
        errors={errors.name}/>
       
       <CustomInput
+       onChangeText={handleChange('dni')}
+       onBlur={handleBlur('dni')}
+       value={values.dni}
+      placeholder='# DOCUMENTO IDENTIDAD' 
+       errors={errors.dni}/>
+
+      <CustomInput
        onChangeText={handleChange('email')}
        onBlur={handleBlur('email')}
        value={values.email}
-       //title='Email'
        placeholder='EMAIL' 
        errors={errors.email} />
 
@@ -99,7 +148,6 @@ export const RegisterScreen = () => {
        onChangeText={handleChange('address')}
        onBlur={handleBlur('address')}
        value={values.address}
-       //title='Direccion' 
        placeholder='DIRECCION'
        errors={errors.address} />
 
@@ -107,7 +155,6 @@ export const RegisterScreen = () => {
        onChangeText={handleChange('city')}
        onBlur={handleBlur('city')}
        value={values.city}
-       //title='Direccion' 
        placeholder='CIUDAD'
        errors={errors.city} />
 
@@ -115,36 +162,52 @@ export const RegisterScreen = () => {
        onChangeText={handleChange('phone')}
        onBlur={handleBlur('phone')}
        value={values.phone}
-       //title='Celular' 
        placeholder='CELULAR'
        errors={errors.phone} />
+
+      <CustomSelector
+      selectedValue={data}
+      setSelectedValue={setData}
+      onChangeText={handleChange('role')}
+      onBlur={handleBlur('role')}
+      value={values.role}
+      errors={errors.role}
+      />  
+      
+      <CustomInput
+       onChangeText={handleChange('userName')}
+       onBlur={handleBlur('userName')}
+       value={values.userName}
+       placeholder='NOMBRE DE USUARIO'
+       errors={errors.userName} />
 
       <CustomInputWithIcon
        onChangeText={handleChange('password')}
        onBlur={handleBlur('password')}
        value={values.password}
-       secureTextEntry={true}
-       //title='Clave'
+       secureTextEntry={toggleIcon? true : false}
        placeholder='CLAVE' 
-       errors={errors.password} />
-       
-
-      {/* <CustomSelector data={data} selectedValue={values.role} setSelectedValue={handleChange('role')}/>*/}
-      <CustomSelector selectedValue={data} setSelectedValue={setData}/>        
+       errors={errors.password} 
+       toggleIcon={toggleIcon}
+       setToggleIcon={setToggleIcon}/>
+      
+      
 
 <CustomButton 
       title='Confirmar'
+      //onPress= {handleSubmit}
       onPress= {handleSubmit}
-
       />
 
        
       </>)}
             </Formik>
            
-            </View>
+            </View>     
             
   </ScrollView >
-  )
-}
+  
+  ) 
 
+  
+}
