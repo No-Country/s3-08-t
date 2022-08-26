@@ -99,7 +99,7 @@ export const RegisterScreen = () => {
 
       //console.log(newUser);
       console.log(newPatient)
-      //await dispatch(registerUser(newUser))
+      await dispatch(registerUser(newUser))
       await dispatch(registerPatient(newPatient))
       
       
