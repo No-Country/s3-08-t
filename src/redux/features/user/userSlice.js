@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './userActions';
+import { loginUser } from './userActions';
 
 
 
@@ -37,21 +37,7 @@ const userSlice = createSlice({
         state.userToken= null
       },
 
-    [registerUser.pending]: (state) => {
-        state.loading = true
-        state.error = null
-      },
-    [registerUser.fulfilled]: (state, { payload }) => {
-        state.loading = false
-        state.success = true 
-        state.sesionInfo = payload
-        state.userToken = payload.token
-      },
-    [registerUser.rejected]: (state, { payload }) => {
-        state.loading = false
-        state.error = payload
-        state.userToken= null
-      },
+    
 
 
     }
