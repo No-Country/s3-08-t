@@ -1,6 +1,7 @@
-import { View, Text, ScrollView, SafeAreaView, Image, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, SafeAreaView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -8,33 +9,38 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 
-export const DoctorCard = (porps) => {
+
+
+
+
+
+export const DoctorCard = (props) => {
+
+    const navigation = useNavigation();
 
     return (
 
-
-
-        <SafeAreaView>
-            <ScrollView>
-                <View style={styles.styledCard}>
-                    <Image style={styles.avatarDr} source={require('../../assets/doctor.png')}></Image>
-                    <View>
+        <TouchableOpacity onPress={()=> navigation.navigate("sobreDr")}>
+            <SafeAreaView>
+                <ScrollView>
+                    <View style={styles.styledCard}>
+                        <Image style={styles.avatarDr} source={props.source} />
                         <View>
-                            <Text style={styles.boldDoctorText}>Doctor {porps.name}</Text>
-                            <Text style={styles.doctorTypeText}>Especialidad {porps.especialidad}</Text>
-                        </View>
+                            <View>
+                                <Text style={styles.boldDoctorText}>Doctor {props.name}</Text>
+                                <Text style={styles.doctorTypeText}>Especialidad {props.especialidad}</Text>
+                                <Text style={styles.doctorTypeText}>Doctor Id {props.id}</Text>                                
+                            </View>
 
-                        <View style={styles.iconBox}>
-                            <Icon name="clock-o" size={24} color="black" style={styles.icons} />
-                            <Icon name="star-o" size={24} color="#FFAC4B" style={styles.icons} />
+                            <View style={styles.iconBox}>
+                                <Icon name="clock-o" size={24} color="black" style={styles.icons} />
+                                <Icon name="star-o" size={24} color="#FFAC4B" style={styles.icons} />
+                            </View>
                         </View>
                     </View>
-
-
-
-                </View>
-            </ScrollView>
-        </SafeAreaView>
+                </ScrollView>
+            </SafeAreaView>
+        </TouchableOpacity>    
     )
 }
 
