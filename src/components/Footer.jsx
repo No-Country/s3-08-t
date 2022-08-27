@@ -1,18 +1,24 @@
 import { View, Text,  StyleSheet, TouchableOpacity, Image } from 'react-native';
 import * as RootNavigation  from "../../RootNavigation";
 import React from "react";
-
+import { useDispatch } from 'react-redux';
+import { cleanUser } from '../redux/features/user/userSlice';
 
 
 
 
 const Footer = () => {
+    const dispatch = useDispatch();
+    const handleClickLogout = () => {
+        dispatch(cleanUser());
+        };
+
     return (
         <View style={styles.footer}>
             {/*HISTORIAL*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("Selección de doctor")} >
+            onPress={()=> RootNavigation.navigate("paciente")} >
                <Image style={styles.icon} source= { require("../../assets/Images/account.png") }/>
             </TouchableOpacity>
             {/*ADD CITA*/ }
@@ -32,6 +38,13 @@ const Footer = () => {
             onPress={()=> RootNavigation.navigate("calendario")} >
                 <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
             </TouchableOpacity>
+
+            <TouchableOpacity 
+            style= {styles.button}
+            onPress={handleClickLogout} >
+                <Image style={styles.icon} source= { require("../../assets/login/logout.png") }/>
+            </TouchableOpacity>
+
         </View>
     )
 }

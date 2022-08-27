@@ -18,6 +18,8 @@ const userSlice = createSlice({
     initialState,
     reducers:{
 
+      cleanUser: (state) => state = initialState,
+
     },
     extraReducers:{
         
@@ -44,4 +46,5 @@ const userSlice = createSlice({
 
 });
 
+export const {cleanUser} = userSlice.actions;
 export default userSlice.reducer;
