@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Modal } from 'react-native';
 import {COLORS} from '../../styles/colors';
 //import { Ionicons } from '@expo/vector-icons';
 export const CustomSelector = ({
   data = [
     {
       id: '1',
-      label: 'Paciente',
+      label: 'PACIENTE',
       value: true,
     },
     {
       id: '2',
-      label: 'Doctor',
+      label: 'DOCTOR',
+      value: false,
+    },
+    {
+      id: '3',
+      label: 'ADMIN',
       value: false,
     },
     
@@ -23,27 +28,46 @@ export const CustomSelector = ({
   withIcon = false,
 }) => {
 
+  const [visible, setVisible] = useState(false);
+
+  const handleSelectedClick = (value) =>{
+    console.log(value);
+    setSelectedValue(value)
+    setVisible(false);
+  }
+
   return (
     <View style={styles.container}>
-      {/*withIcon && <Ionicons name="ellipse" style={Styles.icon} />*/}
-      <View style={styles.selector}>
-        <Picker
-          style={styles.picker}
-          selectedValue={selectedValue}
-          onValueChange={(optionValue) => {
-            setSelectedValue(optionValue);
-          }}
-         
-        >
-          {data.map((option) => (
-            <Picker.Item key={option.id} label={option.label} value={option.value} style={{
-              fontFamily: 'poppins-medium',
-              fontSize: 18,
-            }} />
-          ))}
-        </Picker>
-      </View>
-    </View>
+    <TouchableOpacity 
+    style={styles.touchableOpacity}
+    onPress={()=>setVisible(true)}>
+      <Text style={styles.customSelectorText}>{selectedValue}</Text>
+      </TouchableOpacity> 
+       
+      <Modal
+      transparent={true}
+      visible={visible}
+      animationType='slide' 
+      nRequestClose ={()=>setVisible(false)}
+      
+       >
+        <View style={styles.modalContainer}>
+        <View style={styles.modalBox}>
+        {data.map((el, index)=>(
+          <TouchableOpacity 
+          key={index}
+          onPress={()=>handleSelectedClick(el.label)}
+          style={{justifyContent:'center', alignItems:'center', marginHorizontal:20, padding:5 }}>
+            <Text style={{fontSize:18}}>{el.label}</Text>
+          </TouchableOpacity>
+        ))
+        }
+        </View>
+       </View>
+       </Modal>
+       
+       </View>
+          
   );
 };
 
@@ -51,31 +75,46 @@ export const CustomSelector = ({
 
 const styles = StyleSheet.create({
   container: {
-    width:'100%',
-      paddingHorizontal:30,
+      marginHorizontal:30,
       justifyContent:'center',
+      marginBottom:15
       
+      
+        
   },
-  selector: {
-    fontFamily:'sans-serif', 
-      fontSize:18,
-      paddingHorizontal:20,
-      backgroundColor:COLORS.primary,
-      borderColor: COLORS.secondary,
-      borderWidth:1,
-      borderRadius:10,
+  
+touchableOpacity:{
+  borderRadius:10,
+  borderColor:COLORS.secondary,
+  borderWidth:1,
+  backgroundColor:COLORS.primary,
+  paddingVertical:3
+
+},
+modalContainer:{
+  flex:1,
+    backgroundColor:'#000000AA',
+    justifyContent:'center',
+    alignItems:'center'
+    
   },
-  picker: {
-    position: 'relative',
-  },
-  pickerWithIcon: {
-    left: 15,
-  },
-  icon: {
-    position: 'absolute',
-    left: 10,
-    top: '50%',
-    fontSize: 20,
-    color: COLORS.black,
-  }
+modalBox:{
+
+backgroundColor:'white',
+justifyContent:'center',
+height:200,
+width:300,
+borderRadius:15
+
+
+},
+customSelectorText:{
+paddingHorizontal:20,
+paddingVertical:10,
+fontFamily:'robotoLight',
+fontSize:18,
+color:'grey'
+},
+
+ 
 });
