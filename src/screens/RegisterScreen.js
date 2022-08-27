@@ -10,21 +10,16 @@ import { CustomButton } from '../components/CustomButton';
 import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
 import { CustomSelector } from '../components/CustomSelector';
 import { registerPatient } from '../redux/features/patient/patientActions';
+import { ModalNotifications } from '../components/ModalNotifications';
 
 
 
 export const RegisterScreen = () => {
   const [data, setData] = useState('TIPO USUARIO');
   const dispatch = useDispatch();
-  const us= useSelector(state=>state.user);
+  const {error}= useSelector(state=>state.patient);
   const [toggleIcon, setToggleIcon] = useState(true);
 
-  useEffect(()=>{
-    if(us.success){
-      console.log('Usuario Cargado')
-    }
-
-  },[]);
   
 
   
@@ -112,6 +107,7 @@ export const RegisterScreen = () => {
      
       
       <ScrollView>
+        {error&&<ModalNotifications title='Error' msg='Error al registrar'></ModalNotifications>}
          <View style={{justifyContent:'center', marginTop:30}}>  
       <Text style ={{fontSize:24, textAlign:'center', marginTop: 20, marginBottom:20}}>Crear una Cuenta</Text>
       

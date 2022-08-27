@@ -6,13 +6,7 @@ import { registerPatient } from './patientActions';
 
 
 const initialState = {
-    name: '',
-    address: '',
-    city: '',
-    country: '',
-    dni: '',
-    email: '',
-    phoneNumber: '',
+    patientInfo:{},
     success: false,
     loading:false,
     error: null,
@@ -33,7 +27,7 @@ const patientSlice = createSlice({
     [registerPatient.fulfilled]: (state, { payload }) => {
         state.loading = false
         state.success = true 
-        state.sesionInfo = payload
+        state.patientInfo = payload.patient
         
       },
     [registerPatient.rejected]: (state, { payload }) => {
