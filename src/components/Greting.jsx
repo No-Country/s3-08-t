@@ -1,7 +1,7 @@
-import { View, StyleSheet, Image} from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import StyledText from "../../styles/styleText";
 
-
+import * as RootNavigation  from "../../RootNavigation";
 
 const styles = StyleSheet.create({
     container: {
@@ -33,9 +33,12 @@ const Header = (props) => {
 
     return (
         <View style = {{flexDirection: "row", justifyContent: 'space-between'}}>
+                 <TouchableOpacity
+                  onPress={()=> RootNavigation.navigate("paciente")}>
                 <View>
                     <Image style={styles.image} source= { require("../../assets/Images/profile.png") } />
                 </View>
+                </TouchableOpacity>
                 <View >
                     <StyledText medium secondary>
                         Buenas {greet},
