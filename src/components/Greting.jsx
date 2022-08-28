@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     image: {
         width: 60,
         height: 60,
+        borderRadius:30
 
     }
 
@@ -34,7 +35,7 @@ const Header = (props) => {
     return (
         <View style = {{flexDirection: "row", justifyContent: 'space-between'}}>
                 <View>
-                    <Image style={styles.image} source= { require("../../assets/Images/profile.png") } />
+                    <Image style={styles.image} source= { props.img? {uri: props.img} : require( "../../assets/Images/profile.png") } />
                 </View>
                 <View >
                     <StyledText medium secondary>
