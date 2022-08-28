@@ -33,11 +33,10 @@ const styles = StyleSheet.create({
 
     },
     customInputData:{
-       paddingVertical:10,
+       paddingVertical:15,
        paddingHorizontal:20,
        backgroundColor:COLORS.primary,
-       borderColor: COLORS.secondary,
-       borderWidth:1,
+       
        borderRadius:10,
        fontFamily:'robotoLight',
        fontSize:18

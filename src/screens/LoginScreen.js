@@ -48,7 +48,7 @@ const [toggleIcon, setToggleIcon] = useState(true);
     </View>  
       <Formik
             validationSchema={validationSchema}
-            initialValues={{ userName: '', password: '' }}
+            initialValues={{ userName: 'tocega', password: '98262005' }}
             onSubmit={values => handleLogin(values)}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (   
