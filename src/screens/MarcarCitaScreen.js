@@ -40,7 +40,7 @@ export const MarcarCitaScreen = () => {
            
         </View>
         
-        <BackForwardButton back={true}/>
+        <BackForwardButton back={true} backNavigate="paciente"/>
         
         <Footer />
         </>
