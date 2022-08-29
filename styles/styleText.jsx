@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     textAlignCenter: {
         textAlign: "center",
     },
+    mb24: {
+        marginBottom: 24
+    }
     
     
   });
@@ -60,7 +63,8 @@ const styles = StyleSheet.create({
        poppinsBold, 
        robotoRegular,
        textAlignCenter,
-       mt12
+       mt12,
+       mb24
     
     }) {
     
@@ -76,7 +80,8 @@ const styles = StyleSheet.create({
         poppinsBold && styles.poppinsBold,
         robotoRegular&& styles.robotoRegular,
         textAlignCenter && styles.textAlignCenter,
-       mt12 && styles.mt12
+       mt12 && styles.mt12,
+       mb24 && styles.mb24
     ]
     
     return (

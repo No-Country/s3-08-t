@@ -1,27 +1,23 @@
-import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
+import { View, Text, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Footer from '../components/Footer'
-
+import Greting from "../components/Greting"
+import * as RootNavigation  from "../../RootNavigation";
+import StyledText from '../../styles/styleText';
 
 export const PacienteScreen = () => {
 
   return (
     <>
-    <ScrollView >
+    <ScrollView  >
       <View style={styles.container}>
-        <Image style={styles.logoDoctor} source={require('../../assets/doctor.png')} />
-        <View>
-          <Text style={styles.text1}>Buenas Noches,</Text>
-          <Text style={styles.text2}>Maria das Flores!</Text>
-        </View>
-      </View>
-      
-      <View style={styles.container2}>
-        <Text style={styles.text3}>Mi Historial</Text>
+      <Greting name= "Ezequiel"/>
+    <View>
+        <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>
         
         {/* TextInput buscar - start */}
         {/* https://reactnativecode.com/place-image-icon-inside-textinput-left-side/ */}
-        <View style={styles.container3}>
+        <View>
           <View style={styles.sectionStyle}>
             <TextInput
               style={{flex:1, fontSize: 20, fontFamily: 'robotoLight', color: '#fff'}}
@@ -32,15 +28,26 @@ export const PacienteScreen = () => {
             <Image source={require('../../assets/buscar.png')} style={styles.imageStyle} />
           </View>
         </View>
-        {/* TextInput buscar - end */}
-        
-        {/* Label + input */}
-        <Text style={styles.text4}>Examenes</Text>
-        <View style={styles.container4}>
-          <Image source={require('../../assets/img1.png')} />
-          <Image source={require('../../assets/img2.png')} />
+        {/* Examanes */}
+        <StyledText medium  bold mt24 mb24>Examanes</StyledText>
+        <View style= {styles.box}>
+        {/*Examen Sangre*/}
+        <TouchableOpacity
+        onPress={()=> RootNavigation.navigate("examenSangre")}>
+          <View style={styles.container4}>
+            <Image source={require('../../assets/img1.png')} />
+           
+          </View>
+        </TouchableOpacity>
+         {/*Examen Eletro*/}
+         <TouchableOpacity
+        onPress={()=> RootNavigation.navigate("examenEletro")}>
+          <View style={styles.EX}>
+            <Image source={require('../../assets/img1.png')} />
+            
+          </View>
+        </TouchableOpacity>
         </View>
-        
         {/* Label + input */}
         <Text style={styles.text4}>Doctores</Text>
         <TextInput
@@ -65,7 +72,7 @@ export const PacienteScreen = () => {
         </View>
       </View>
       
-      
+      </View>
     </ScrollView>
     <Footer />
     </>
@@ -74,14 +81,14 @@ export const PacienteScreen = () => {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 50,
-    marginLeft: 21,
-    marginRight: 12
-  },
+  
+    container: {
+      flex: 1,
+      padding: 24,
+      backgroundColor: "#DFF3EC"
+     
+    },
+
   logoDoctor: {
     width: 77,
     height: 102,
@@ -113,24 +120,15 @@ const styles = StyleSheet.create({
   
   // ************************
   // TextInput buscar - start
-  container3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    //margin: 10,
-  },
+  
   
   sectionStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(64, 181, 144, 0.5)',
-    //borderWidth: .5,
-    //borderColor: '#000',
-    height: 80,
     borderRadius: 18 ,
     //margin: 10,
-    
     paddingLeft: 27,
   },
   // buscar icon
@@ -170,5 +168,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  }
+  },
+  box: {
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    padding: 10,
+    
+    }
 })

@@ -4,6 +4,8 @@ import { CustomButton } from "../components/CustomButton" ;
 import Footer from '../components/Footer';
 import Greting from '../components/Greting';
 import Calendario from './Calendario';
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,

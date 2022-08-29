@@ -9,13 +9,12 @@ import { RegisterScreen } from '../../screens/RegisterScreen';
 import ConfCita from '../../screens/ConfCita';
 import HoraCita from '../../screens/HoraCita';
 import { useSelector } from "react-redux";
-
 import Header from '../Header';
 import { PacienteScreen } from '../../screens/PacienteScreen';
 import Footer from '../Footer';
 import Calendario from '../../screens/Calendario';
-
-
+import ExamenSangre from "../../screens/ExamenSangre"
+import ExamenEletro from "../../screens/ExamenEletro"
 
 const Stack = createNativeStackNavigator()
 
@@ -36,17 +35,13 @@ const StackNavigator = () => {
           
         </>):(<>
          
-        <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="paciente" component={PacienteScreen} options={{ header:  () => <Header/> }} /> 
         <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
         <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
         <Stack.Screen name="calendario" component={Calendario}  options={{ header:  () => <Header/> }} />
-        
-          
-     <Stack.Screen name="ConfirmaCita" component={ConfCita} options = {{
-header:  () => <Header/>
-          }}
-          />
-          <Stack.Screen name="HoraCita" component={HoraCita}/>
+        <Stack.Screen name="examenSangre" component={ExamenSangre}  options={{ header:  () => <Header/> }} />
+        <Stack.Screen name="examenEletro" component={ExamenEletro}  options={{ header:  () => <Header/> }} />
+        <Stack.Screen name="ConfirmaCita" component={ConfCita} options = {{header:  () => <Header/>}}/>
           
           </>
           )}
