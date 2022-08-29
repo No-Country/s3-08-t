@@ -9,7 +9,8 @@ export const registerUser = createAsyncThunk(
     async (userInfo, {rejectWithValue}) => {
       try{
         console.log('Ingresando a RegisterUser')
-        const data = (await axios.post(BASE_URL + '/user/',userInfo)).data;
+        const data = (await axios.post("http://192.168.56.1:9000/api/user/",userInfo)).data;
+        //const data = (await axios.post("http://192.168.1.6:9000/api/user/",userInfo)).data;
         console.log(data); 
         return data;
         
@@ -42,9 +43,10 @@ export const registerUser = createAsyncThunk(
     async (userInfo, {rejectWithValue}) => {
       try{
         console.log('Ingresando a LoginUser')
-        console.log(BASE_URL);
-       const data = (await axios.post(BASE_URL + '/auth/login',userInfo)).data;
-       console.log(data); 
+        //const data = (await axios.post("http://192.168.1.6:9000/api/auth/login",userInfo)).data;
+        const data = (await axios.post("http://172.22.16.1:9000/api/auth/login",userInfo)).data;
+        
+        console.log(data); 
         return data;
         
         }catch(e){
