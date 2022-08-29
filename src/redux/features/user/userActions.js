@@ -6,7 +6,7 @@ import {BASE_URL} from "@env";
 
 export const registerUser = createAsyncThunk(
     'user/register',
-    async (userInfo, {rejectWithValue}) => {
+    async (userInfo) => {
       try{
         console.log('Ingresando a RegisterUser')
         const data = (await axios.post(BASE_URL + '/user/',userInfo)).data;
@@ -16,10 +16,10 @@ export const registerUser = createAsyncThunk(
         }catch(e){
           if (e.response && e.response.data.message) {
             //console.log(e)
-            return rejectWithValue(e.response.data.message)
+            return e.response.data.message
 
           } else {
-            return rejectWithValue(e.message)
+            return e.message
           }
         }
     }
@@ -39,7 +39,7 @@ export const registerUser = createAsyncThunk(
 
   export const loginUser = createAsyncThunk(
     'user/login',
-    async (userInfo, {rejectWithValue}) => {
+    async (userInfo) => {
       try{
         console.log('Ingresando a LoginUser')
         console.log(BASE_URL);
@@ -50,10 +50,10 @@ export const registerUser = createAsyncThunk(
         }catch(e){
           if (e.response && e.response.data.message) {
             //console.log(e)
-            return rejectWithValue(e.response.data.message)
+            return e.response.data.message
 
           } else {
-            return rejectWithValue(e.message)
+            return e.message
           }
         }
     }
