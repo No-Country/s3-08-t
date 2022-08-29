@@ -15,6 +15,7 @@ import { PacienteScreen } from '../../screens/PacienteScreen';
 import Footer from '../Footer';
 import Calendario from '../../screens/Calendario';
 import { MarcarCitaScreen } from '../../screens/MarcarCitaScreen';
+import { MiInformacion } from '../../screens/MiInformacion';
 
 
 
@@ -37,11 +38,12 @@ const StackNavigator = () => {
           
         </>):(<>
          
-        <Stack.Screen name="marcarCita" component={MarcarCitaScreen}  options={{ header:  () => <Header/> }} />
         <Stack.Screen name="paciente" component={PacienteScreen} options={{ headerShown: false }} /> 
         <Stack.Screen name="sobreDr" component={SobreDr} options={{ header:  () => <Header/> }} />
+        <Stack.Screen name="marcarCita" component={MarcarCitaScreen}  options={{ header:  () => <Header/> }} />
         <Stack.Screen name="Selección de doctor" component={DoctorsCards} options={{ header:  () => <Header/> }} />
         <Stack.Screen name="calendario" component={Calendario}  options={{ header:  () => <Header/> }} />
+        <Stack.Screen name="miInformacion" component={MiInformacion}  options={{ header:  () => <Header/> }} />
         
           
      <Stack.Screen name="ConfirmaCita" component={ConfCita} options = {{

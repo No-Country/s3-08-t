@@ -1,19 +1,17 @@
 import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
 import React from 'react'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+import Greting from '../components/Greting';
 
 
-export const PacienteScreen = () => {
+export const PacienteScreen = ({userInfo}) => {
 
   return (
     <>
     <ScrollView >
-      <View style={styles.container}>
-        <Image style={styles.logoDoctor} source={require('../../assets/doctor.png')} />
-        <View>
-          <Text style={styles.text1}>Buenas Noches,</Text>
-          <Text style={styles.text2}>Maria das Flores!</Text>
-        </View>
+      <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
+      <Greting name= {'Cesar Galeano'} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
+            
       </View>
       
       <View style={styles.container2}>
