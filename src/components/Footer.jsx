@@ -18,7 +18,7 @@ const Footer = () => {
             {/*HISTORIAL*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("paciente")} >
+            onPress={()=> RootNavigation.navigate("miInformacion")} >
                <Image style={styles.icon} source= { require("../../assets/Images/account.png") }/>
             </TouchableOpacity>
             {/*ADD CITA*/ }
