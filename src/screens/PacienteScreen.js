@@ -1,11 +1,22 @@
-import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native'
-import React from 'react'
+import { View, Text, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
+import React, {useEffect} from 'react'
 import Footer from '../components/Footer';
 import Greting from '../components/Greting';
+import {useDispatch} from 'react-redux';
+import { getDoctors, getDoctorTypes } from '../redux/features/doctor/doctorActions';
+import axios from 'axios';
+import {BASE_URL} from "@env";
 
 
 export const PacienteScreen = ({userInfo}) => {
+  const dispatch = useDispatch();
 
+  useEffect(()=>{
+    dispatch(getDoctors());
+    dispatch(getDoctorTypes());
+    
+  },[]);
+  
   return (
     <>
     <ScrollView >
@@ -62,6 +73,8 @@ export const PacienteScreen = ({userInfo}) => {
           <Image source={require('../../assets/plus.png')} />
         </View>
       </View>
+      
+      
       
       
     </ScrollView>

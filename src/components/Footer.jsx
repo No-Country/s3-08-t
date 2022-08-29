@@ -24,7 +24,7 @@ const Footer = () => {
             {/*ADD CITA*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("sobreDr")} >
+            onPress={()=> RootNavigation.navigate("marcarCita")} >
                 <Image style={styles.icon} source= { require("../../assets/Images/addNew.png") }/>
             </TouchableOpacity>
             <TouchableOpacity 

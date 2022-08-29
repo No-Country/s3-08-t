@@ -6,7 +6,7 @@ import {BASE_URL} from "@env";
 
 export const registerPatient = createAsyncThunk(
     'patient/register',
-    async (newPatient, {rejectWithValue}) => {
+    async (newPatient) => {
       try{
         console.log('Ingresando a RegisterPatient')
        
@@ -18,10 +18,10 @@ export const registerPatient = createAsyncThunk(
         }catch(e){
           if (e.response && e.response.data.message) {
             //console.log(e)
-            return rejectWithValue(e.response.data.message)
+            return e.response.data.message
 
           } else {
-            return rejectWithValue(e.message)
+            return e.message
           }
         }
     }

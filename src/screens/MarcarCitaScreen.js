@@ -16,6 +16,8 @@ import { transform } from 'lodash';
 export const MarcarCitaScreen = () => {
   const dispatch= useDispatch();
   const {name, } = useSelector(state=> state.user.sesionInfo.pat);
+  const doctorTyp = useSelector(state=> state.doctor.doctorTypes);
+  const doctorTypes = doctorTyp.map(e=>e.nameType);
   const [selectedSpec, setSelectedSpec] = useState('buscar especialidad');
   
   
@@ -30,7 +32,7 @@ export const MarcarCitaScreen = () => {
            </StyledText>
           
             <View style={{marginTop:20}}>
-           <CustomSelector margin data={["Medicina Gral", "Odontolgia", "Pediatria", "Ginecologia"]} selectedValue={selectedSpec} setSelectedValue={setSelectedSpec} />
+           <CustomSelector margin data={doctorTypes} selectedValue={selectedSpec} setSelectedValue={setSelectedSpec} />
            </View>
            </View>
            
