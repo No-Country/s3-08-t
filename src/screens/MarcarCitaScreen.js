@@ -43,7 +43,7 @@ export const MarcarCitaScreen = () => {
         </View>
         
         <BackForwardButton back={true} backNavigate="paciente"/>
-        
+        {!(selectedSpec==='buscar especialidad')&&<BackForwardButton forward={true} forwardNavigate="Selección de doctor"/>}
         <Footer />
         </>
   )
