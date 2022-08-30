@@ -18,32 +18,22 @@ const Footer = () => {
             {/*HISTORIAL*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("paciente")} >
+            onPress={()=> RootNavigation.navigate("miInformacion")} >
                <Image style={styles.icon} source= { require("../../assets/Images/account.png") }/>
             </TouchableOpacity>
             {/*ADD CITA*/ }
             <TouchableOpacity 
             style= {styles.button}
-            onPress={()=> RootNavigation.navigate("sobreDr")} >
-                <Image style={styles.icon} source= { require("../../assets/Images/addNew.png") }/>
+            onPress={()=> RootNavigation.navigate("marcarCita")} >
+                <Image style={styles.icon} source= { require("../../assets/plus.png") }/>
             </TouchableOpacity>
-            <TouchableOpacity 
-            style= {styles.button}
-            onPress={()=> RootNavigation.navigate("ConfirmaCita")} >
-                <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
-            </TouchableOpacity>
-
             <TouchableOpacity 
             style= {styles.button}
             onPress={()=> RootNavigation.navigate("calendario")} >
                 <Image style={styles.icon} source= { require("../../assets/Images/calendar.png") }/>
             </TouchableOpacity>
 
-            <TouchableOpacity 
-            style= {styles.button}
-            onPress={handleClickLogout} >
-                <Image style={styles.icon} source= { require("../../assets/login/logout.png") }/>
-            </TouchableOpacity>
+            
 
         </View>
     )
@@ -64,8 +54,8 @@ button: {
     padding: 20,
 },
 icon: {
-    width: 30,
-    height: 30
+    width: 35,
+    height: 35
 }
 
 })

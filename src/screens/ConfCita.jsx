@@ -1,4 +1,4 @@
-import { View, Text,  StyleSheet, Image } from 'react-native';
+import { View, Text,  StyleSheet, Image, ScrollView } from 'react-native';
 import StyledText from "../../styles/styleText";
 import { CustomButton } from "../components/CustomButton" ;
 import Footer from '../components/Footer';
@@ -28,7 +28,9 @@ const ConfCita = () => {
         console.log("Confirmado")
     } 
    
-    return (<>
+    return (
+    <> 
+        <ScrollView>
         <View style={styles.container}>
            
             <Greting name= "Ezequiel"/>
@@ -48,7 +50,7 @@ const ConfCita = () => {
            />
       
         </View>
-        
+        </ScrollView>
         <Footer />
         </>
     )

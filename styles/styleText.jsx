@@ -3,6 +3,10 @@ import { Text,  StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     // Size
+    smallExtra: {
+        fontSize: 14,
+    },
+     
     small: {
         fontSize: 16,
     },
@@ -46,8 +50,13 @@ const styles = StyleSheet.create({
     },
     mb24: {
         marginBottom: 24
+    },
+    whiteText:{ 
+       color: "rgba(248, 255, 253, 1)",
+    }, 
+    ml6: {
+        marginLeft: 6
     }
-    
     
   });
 
@@ -64,8 +73,10 @@ const styles = StyleSheet.create({
        robotoRegular,
        textAlignCenter,
        mt12,
-       mb24
-    
+       mb24,
+       whiteText,
+       smallExtra,
+       ml6
     }) {
     
     const style = [
@@ -81,7 +92,10 @@ const styles = StyleSheet.create({
         robotoRegular&& styles.robotoRegular,
         textAlignCenter && styles.textAlignCenter,
        mt12 && styles.mt12,
-       mb24 && styles.mb24
+       mb24 && styles.mb24,
+       whiteText && styles.whiteText,
+       smallExtra && styles.smallExtra,
+       ml6 && styles.ml6
     ]
     
     return (

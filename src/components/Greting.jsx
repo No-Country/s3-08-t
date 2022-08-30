@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     image: {
         width: 60,
         height: 60,
+        borderRadius:30
 
     }
 
@@ -36,7 +37,7 @@ const Header = (props) => {
                  <TouchableOpacity
                   onPress={()=> RootNavigation.navigate("paciente")}>
                 <View>
-                    <Image style={styles.image} source= { require("../../assets/Images/profile.png") } />
+                    <Image style={styles.image} source= { props.img? {uri: props.img} : require( "../../assets/Images/profile.png") } />
                 </View>
                 </TouchableOpacity>
                 <View >

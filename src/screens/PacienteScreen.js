@@ -1,19 +1,32 @@
 import { View, Text, Image, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
-import Footer from '../components/Footer'
-import Greting from "../components/Greting"
+import React, {useEffect} from 'react'
+import Footer from '../components/Footer';
+import Greting from '../components/Greting';
+import {useDispatch} from 'react-redux';
+import { getDoctors, getDoctorTypes } from '../redux/features/doctor/doctorActions';
+import axios from 'axios';
+import {BASE_URL} from "@env";
 import * as RootNavigation  from "../../RootNavigation";
 import StyledText from '../../styles/styleText';
+import  DoctorCard   from "../components/DoctorCard"
+import DoctorsCards from './DoctorsCards';
+import {useSelector} from 'react-redux';
 
-export const PacienteScreen = () => {
+export const PacienteScreen = ({userInfo}) => {
+  const dispatch = useDispatch();
+  const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
+
 
   return (
     <>
-    <ScrollView  >
-      <View style={styles.container}>
-      <Greting name= "Ezequiel"/>
-    <View>
-        <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>
+    <ScrollView >
+      <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
+      <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
+      <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>      
+      </View>
+      
+      <View style={styles.container2}>
+       
         
         {/* TextInput buscar - start */}
         {/* https://reactnativecode.com/place-image-icon-inside-textinput-left-side/ */}
@@ -21,59 +34,62 @@ export const PacienteScreen = () => {
           <View style={styles.sectionStyle}>
             <TextInput
               style={{flex:1, fontSize: 20, fontFamily: 'robotoLight', color: '#fff'}}
-              placeholder="buscar"
+              placeholder="buscar doctor"
               placeholderTextColor='#fff'
               selectionColor={'#40B590'}
             />
-            <Image source={require('../../assets/buscar.png')} style={styles.imageStyle} />
+            <Image 
+            source={require('../../assets/buscar.png')} 
+            style={styles.imageStyle} />
           </View>
         </View>
         {/* Examanes */}
-        <StyledText medium  bold mt24 mb24>Examanes</StyledText>
-        <View style= {styles.box}>
+        <StyledText small  bold mt24 mb24>Examanes</StyledText>
+        <View style= {styles.boxExamenes}>
         {/*Examen Sangre*/}
-        <TouchableOpacity
-        onPress={()=> RootNavigation.navigate("examenSangre")}>
-          <View style={styles.container4}>
-            <Image source={require('../../assets/img1.png')} />
-           
-          </View>
-        </TouchableOpacity>
-         {/*Examen Eletro*/}
-         <TouchableOpacity
-        onPress={()=> RootNavigation.navigate("examenEletro")}>
-          <View style={styles.EX}>
-            <Image source={require('../../assets/img1.png')} />
-            
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity
+          onPress={()=> RootNavigation.navigate("examenSangre")}>
+            <View style={styles.box}>
+              <Image source={require('../../assets/Images/jeringa.png')} />
+            </View>
+          </TouchableOpacity>
+          {/*Examen Eletro*/}
+          <TouchableOpacity
+          onPress={()=> RootNavigation.navigate("examenEletro")}>
+            <View style={styles.box}>
+              <Image source={require('../../assets/Images/core.png')} />
+              
+            </View>
+          </TouchableOpacity>
         </View>
-        {/* Label + input */}
-        <Text style={styles.text4}>Doctores</Text>
-        <TextInput
-          style={styles.input1}
-          placeholder="buscar"
-          placeholderTextColor='#fff'
-          selectionColor={'#40B590'}
-        />
-        
-        {/* Label + input */}
-        <Text style={styles.text4}>Mis citas</Text>
-        <TextInput
-          style={styles.input1}
-          placeholder="buscar"
-          placeholderTextColor='#fff'
-          selectionColor={'#40B590'}
-        />
-        
-        {/* Plus icon */}
-        <View style={styles.plusImage}>
-          <Image source={require('../../assets/plus.png')} />
+        {/* Doctores*/}
+        <StyledText small   bold mt24 mb24>Doctores</StyledText>
+        <View style= {styles.boxDoctores}>
+          <View style={{flexDirection:"row" }}>
+            <Image style={styles.imageDoctor} source= { require("../../assets/Images/doctor.png") } />
+            <View style= {{flexDirection: "row", marginTop: 10, marginLeft: 6}}>
+                            <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                            <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                            <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                            <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                            <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                            <StyledText small primary>(4.7)</StyledText>
+            </View> 
+          </View>            
+            <View>
+            <View style= {{flexDirection: "row"}}>
+              <StyledText smallExtra secondary poppinsBold >Doctor:</StyledText>
+              <StyledText whiteText robotoRegular ml6>Marco</StyledText>
+            </View>
+            <View  style= {{flexDirection: "row"}}>
+              <StyledText smallExtra secondary poppinsBold>Especialidad:</StyledText>
+              <StyledText whiteText robotoRegular ml6>Cardiologista</StyledText>
+            </View>
+                                     
+            </View>                 
         </View>
       </View>
-      
-      </View>
-    </ScrollView>
+      </ScrollView>
     <Footer />
     </>
   )
@@ -164,15 +180,32 @@ const styles = StyleSheet.create({
     paddingLeft: 27
   },
   // examenes images
-  container4: {
+   boxExamenes: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    
+  },
+  //docotores
+  boxDoctores:  {
+    padding: 15,
+    width: 210,
+    height: 120,
+    backgroundColor: 'rgba(64, 181, 144, 0.5)',
+    borderRadius: 10,
   },
   box: {
-    flexDirection: "row",
-    justifyContent: 'space-between',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
-    
-    }
-})
+    width: 160,
+    height: 160,
+    backgroundColor: 'rgba(64, 181, 144, 0.5)',
+    borderRadius: 10,
+  }, 
+  imageDoctor: {
+   width: 30,
+   height: 40
+  }, 
+  
+});

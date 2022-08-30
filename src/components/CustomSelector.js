@@ -1,31 +1,18 @@
 import React, {useState} from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { View, StyleSheet, TouchableOpacity, Text, Modal } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Modal , Image} from 'react-native';
 import {COLORS} from '../../styles/colors';
 //import { Ionicons } from '@expo/vector-icons';
 export const CustomSelector = ({
   data = [
-    {
-      id: '1',
-      label: 'PACIENTE',
-      value: true,
-    },
-    {
-      id: '2',
-      label: 'DOCTOR',
-      value: false,
-    },
-    {
-      id: '3',
-      label: 'ADMIN',
-      value: false,
-    },
-    
-
+     'PACIENTE',
+     'DOCTOR',
+      'ADMIN',
   ],
   selectedValue,
   setSelectedValue,
   withIcon = false,
+  margin = false
 }) => {
 
   const [visible, setVisible] = useState(false);
@@ -37,35 +24,40 @@ export const CustomSelector = ({
   }
 
   return (
-    <View style={styles.container}>
-    <TouchableOpacity 
-    style={styles.touchableOpacity}
-    onPress={()=>setVisible(true)}>
+    <View style={margin? styles.container1 : styles.container}>
+    <View style={styles.touchableOpacity} >
+      <View style={styles.searchContainer}>
       <Text style={styles.customSelectorText}>{selectedValue}</Text>
-      </TouchableOpacity> 
+      <TouchableOpacity
+      style={styles.searchIcon}
+      onPress={()=>setVisible(true)}>
+        <Image style={{width:25, height:25}}source={require('../../assets/search/down-arrow.png')}></Image>
+      </TouchableOpacity>
+      </View>
+      </View> 
        
-      <Modal
+      {/*<Modal
       transparent={true}
       visible={visible}
       animationType='slide' 
       nRequestClose ={()=>setVisible(false)}
       
-       >
+ 
         <View style={styles.modalContainer}>
         <View style={styles.modalBox}>
         {data.map((el, index)=>(
           <TouchableOpacity 
           key={index}
-          onPress={()=>handleSelectedClick(el.label)}
+          onPress={()=>handleSelectedClick(el)}
           style={{justifyContent:'center', alignItems:'center', marginHorizontal:20, padding:5 }}>
-            <Text style={{fontSize:18}}>{el.label}</Text>
+            <Text style={{fontSize:18}}>{el}</Text>
           </TouchableOpacity>
         ))
         }
         </View>
        </View>
        </Modal>
-       
+        >*/}
        </View>
           
   );
@@ -75,20 +67,41 @@ export const CustomSelector = ({
 
 const styles = StyleSheet.create({
   container: {
+   
       marginHorizontal:30,
       justifyContent:'center',
-      marginBottom:15
+       marginBottom:15,
       
-      
-        
   },
+  container1: {
+   
+    marginHorizontal:0,
+    justifyContent:'center',
+     marginBottom:15,
+    
+},
+
   
+  searchContainer:{
+    flexDirection: 'row',
+    justifyContent:'space-between'
+  },
+  searchIcon:{
+    backgroundColor:COLORS.secondary,
+    justifyContent:'center',
+    alignSelf:'center',
+    alignItems:'center',
+    width:45,
+    height:45,
+    marginRight:8,
+    borderRadius:15
+
+  },
+
 touchableOpacity:{
   borderRadius:10,
-  borderColor:COLORS.secondary,
-  borderWidth:1,
   backgroundColor:COLORS.primary,
-  paddingVertical:3
+  paddingVertical:8
 
 },
 modalContainer:{

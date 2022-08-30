@@ -47,8 +47,7 @@ const Calendario = () => {
         <StyledText medium secondary poppinsBold>Horario:<StyledText robotoRegular medium primary>08:00 </StyledText> </StyledText>
         <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>Marco Souza </StyledText> </StyledText>
         <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>Cardiologista</StyledText></StyledText>
-      </View>
-    </ScrollView>
+      </View>    </ScrollView>
     <Footer/>
     </>
         

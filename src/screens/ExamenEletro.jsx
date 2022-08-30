@@ -6,18 +6,6 @@ import image from "../../assets/Images/pulseRate.png";
 import StyledText from "../../styles/styleText";
 
 
-const eletro = [
-    {
-        image: "../../assets/Images/pulseRate.png", 
-        rate: "104bpm"
-    }
-]
-const Item = ({ image , rate}) => (
-    <View style= {styles.box} >
-      <StyledText medium secondary poppinsBold>{nombre}</StyledText>
-      
-    </View>
-  );
 const ExamenEletro = () => {
     return(
       <>
@@ -26,11 +14,17 @@ const ExamenEletro = () => {
         <Greting name= "Ezequiel"/>
           <View >
               <StyledText medium  bold mt24 mb24>
-                      Examen de Coracion
+                      Examen de Corazón
               </StyledText>
+              <StyledText small secondary poppinsBold >Eletrocardiagrama</StyledText>
+          </View>
+          <View style= {styles.boxImage}>
+            <Image style= {styles.imgEletro} source={require("../../assets/Images/pulseRate.png")}/>
+            <StyledText robotoRegular medium primary>180bpm</StyledText>
           </View>
         </View>
       </ScrollView>
+      <Footer/>
       </>
     )
 }
@@ -51,8 +45,18 @@ const styles = StyleSheet.create({
     image: {
         width: 60,
         height: 100
+    }, 
+    imgEletro:  {
+      width: 360,
+      height: 120
+
+
+    },
+    boxImage: {
+      padding: 10
     }
 
 })
+
 
 export default  ExamenEletro
