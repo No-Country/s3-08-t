@@ -36,11 +36,11 @@ export const CustomSelector = ({
       </View>
       </View> 
        
-      {/*<Modal
+      <Modal
       transparent={true}
       visible={visible}
       animationType='slide' 
-      nRequestClose ={()=>setVisible(false)}
+      nRequestClose ={()=>setVisible(false)}>
       
  
         <View style={styles.modalContainer}>
@@ -57,7 +57,7 @@ export const CustomSelector = ({
         </View>
        </View>
        </Modal>
-        >*/}
+        
        </View>
           
   );
