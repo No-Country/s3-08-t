@@ -24,7 +24,7 @@ export const PacienteScreen = ({userInfo}) => {
 
   return (
     <>
-    <ScrollView >
+    <ScrollView  style= {styles.container}>
       <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
       <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
       <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>      
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
-    width: 160,
+    width: 140,
     height: 160,
     backgroundColor: 'rgba(64, 181, 144, 0.5)',
     borderRadius: 10,

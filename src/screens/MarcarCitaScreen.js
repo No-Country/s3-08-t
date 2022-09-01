@@ -15,7 +15,7 @@ import { transform } from 'lodash';
 
 export const MarcarCitaScreen = () => {
   const dispatch= useDispatch();
-  const {name, } = useSelector(state=> state.user.sesionInfo.pat);
+  const {name} = useSelector(state=> state.user.sesionInfo.pat);
   const doctorTyp = useSelector(state=> state.doctor.doctorTypes);
   const doctorTypes = doctorTyp.map(e=>e.nameType);
   const [selectedSpec, setSelectedSpec] = useState('buscar especialidad');
@@ -26,7 +26,7 @@ export const MarcarCitaScreen = () => {
     <>
         <View style={styles.container}>
            <View style={{flex:1}}>
-            <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
+            <Greting name={name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
             <StyledText medium bold mt24>
                 {"Marcar Citas > Especialidad"}
            </StyledText>

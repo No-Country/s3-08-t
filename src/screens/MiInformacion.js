@@ -77,6 +77,9 @@ export const MiInformacion = () => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+      backgroundColor: "#DFF3EC",
+    },
     image:{
         width:70,
         height:70,

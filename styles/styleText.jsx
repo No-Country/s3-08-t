@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
     }, 
     ml6: {
         marginLeft: 6
+    },
+    flex1: {
+        flex: 1
     }
     
   });
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
        mb24,
        whiteText,
        smallExtra,
-       ml6
+       ml6,flex1
     }) {
     
     const style = [
@@ -95,7 +98,8 @@ const styles = StyleSheet.create({
        mb24 && styles.mb24,
        whiteText && styles.whiteText,
        smallExtra && styles.smallExtra,
-       ml6 && styles.ml6
+       ml6 && styles.ml6,
+       flex1 && styles.flex1
     ]
     
     return (
