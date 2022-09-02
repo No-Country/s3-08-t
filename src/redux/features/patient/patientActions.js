@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {BASE_URL} from "@env";
+//import {BASE_URL} from "@env";
 
-
+const BASE_URL = "http://192.168.1.6:9000/api";
 
 export const registerPatient = createAsyncThunk(
     'patient/register',

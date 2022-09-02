@@ -4,11 +4,7 @@ import { View, StyleSheet, TouchableOpacity, Text, Modal , Image} from 'react-na
 import {COLORS} from '../../styles/colors';
 //import { Ionicons } from '@expo/vector-icons';
 export const CustomSelector = ({
-  data = [
-     'PACIENTE',
-     'DOCTOR',
-      'ADMIN',
-  ],
+  data=["Item1", "Item2", "Item3"],
   selectedValue,
   setSelectedValue,
   withIcon = false,

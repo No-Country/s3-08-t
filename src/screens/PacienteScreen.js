@@ -11,20 +11,25 @@ import StyledText from '../../styles/styleText';
 import  DoctorCard   from "../components/DoctorCard"
 import DoctorsCards from './DoctorsCards';
 import {useSelector} from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
-export const PacienteScreen = ({userInfo}) => {
+
+export const PacienteScreen = () => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
 
-  useEffect(()=>{
-    dispatch(getDoctors());
-    dispatch(getDoctorTypes());
-    
-  },[]);
+  useEffect(async()=>{
+
+    await dispatch(getDoctors())
+    await dispatch(getDoctorTypes())
+
+  },[])
+
 
   return (
     <>
-    <ScrollView  style= {styles.container}>
+    <ScrollView >
       <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
       <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
       <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>      
@@ -53,14 +58,14 @@ export const PacienteScreen = ({userInfo}) => {
         <View style= {styles.boxExamenes}>
         {/*Examen Sangre*/}
           <TouchableOpacity
-          onPress={()=> RootNavigation.navigate("examenSangre")}>
+          onPress={()=> navigation.navigate("examenSangre")}>
             <View style={styles.box}>
               <Image source={require('../../assets/Images/jeringa.png')} />
             </View>
           </TouchableOpacity>
           {/*Examen Eletro*/}
           <TouchableOpacity
-          onPress={()=> RootNavigation.navigate("examenEletro")}>
+          onPress={()=> navigation.navigate("examenEletro")}>
             <View style={styles.box}>
               <Image source={require('../../assets/Images/core.png')} />
               
@@ -203,7 +208,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
-    width: 140,
+    width: 160,
     height: 160,
     backgroundColor: 'rgba(64, 181, 144, 0.5)',
     borderRadius: 10,
