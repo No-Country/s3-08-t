@@ -11,7 +11,7 @@ import {useDispatch} from 'react-redux';
 import { getDoctors, getDoctorTypes } from '../redux/features/doctor/doctorActions';
 
 
-const Calendario = (props, {userInfo}) => {
+const Calendario = (props) => {
   const dispatch = useDispatch();
   const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
 

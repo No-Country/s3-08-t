@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 
 export const DoctorsCards = () => {
     const doctors = useSelector(state=>state.doctor.doctors);
+    console.log(doctors);
     const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
 
 
@@ -31,7 +32,7 @@ export const DoctorsCards = () => {
                 <View style={styles.cardsContainer}>
                   
                     {doctors.map(doctor =>
-                        <DoctorCard key={doctor._id} id={doctor._id} name={doctor.doctorName} especialidad={doctor.type} source={{uri:doctor.user[0].img}} />
+                        <DoctorCard key={doctor.uid} id={doctor.uid} name={doctor.doctorName} especialidad={doctor.type}  />
                     )
 
                     }

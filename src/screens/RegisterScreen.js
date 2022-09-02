@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../redux/features/user/userActions';
+
 import axios from 'axios';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,16 +12,22 @@ import { CustomInputWithIcon } from '../components/CustomInputWithIcon';
 import { CustomSelector } from '../components/CustomSelector';
 import { registerPatient } from '../redux/features/patient/patientActions';
 import { ModalNotifications } from '../components/ModalNotifications';
+import { registerUser } from '../redux/features/user/userActions';
+import { getDoctors, getDoctorTypes, registerDoctor } from '../redux/features/doctor/doctorActions';
 
 
 
 export const RegisterScreen = () => {
-  const [data, setData] = useState('TIPO USUARIO');
+  const [selectedRole, setSelectedRole] = useState('TIPO USUARIO');
+  const [ selectedDoctorType, setSelectedDoctorType] = useState('ESPECIALIDAD');
+ 
   const dispatch = useDispatch();
   const {error}= useSelector(state=>state.patient);
   const [toggleIcon, setToggleIcon] = useState(true);
 
-  
+
+  const doctorTyp = useSelector(state=> state.doctor.doctorTypes);
+  const doctorTypes = doctorTyp.map(e=>e.nameType);
 
   
      const validationSchema = Yup.object().shape({
@@ -56,6 +63,14 @@ export const RegisterScreen = () => {
         .string()
         .required('Campo Ciudad Requerido!'),
 
+        country: Yup
+        .string()
+        .required('Campo Country Requerido!'),
+
+        img: Yup
+        .string()
+        .required('Campo Imagen Requerido!'),
+
         role: Yup
         .string()
         ,
@@ -66,10 +81,7 @@ export const RegisterScreen = () => {
     })
 
     const handleDispatch= async(values)=>{
-      data==='PACIENTE'? values.role='USER_ROLE' : 
-      data==='DOCTOR'? values.role='DOCTOR_ROLE' :
-      values.role = 'ADMIN_ROLE'     
-      
+      console.log(selectedRole);
       const newUser = 
       {
           "userName": values.userName,
@@ -78,30 +90,64 @@ export const RegisterScreen = () => {
           "dni":values.dni
        };
 
-      const newPatient = 
-      {
-         "dni":values.dni,
-         "name": values.name,
-        "email": values.email,
-        "userEmail": values.email,
-        "phoneNumber": values.phone,
-        "address": values.address,
-        "city": values.city,
-        "country": "Colombia"
-       };
+      if (selectedRole==='PACIENTE') {
+        values.role='USER_ROLE'
+         const newPatient = 
+         {
+            "dni":values.dni,
+            "name": values.name,
+           "email": values.email,
+           "userEmail": values.email,
+           "phoneNumber": values.phone,
+           "address": values.address,
+           "city": values.city,
+           "country": values.country
+          };
+
+         await dispatch(registerUser(newUser))
+         //await dispatch(registerPatient(newPatient))
+
+      }
+      else if( selectedRole==='DOCTOR'){
+        values.role='DOCTOR_ROLE'
+        const newDoctor = 
+         {
+            "dni":values.dni,
+            "doctorName": values.name,
+           "doctorEmail": values.email,
+           "doctorPhone": values.phone,
+           "doctorAddress": values.address,
+           "doctorCity": values.city,
+           "doctorCountry": values.country,
+           "type": ["traumatologo"]
+          };
+
+          await dispatch(registerUser(newUser))
+          await dispatch(registerDoctor(newDoctor))
+
+      }
+          
+    else if(selectedRole==='ADMIN'){
+      values.role = 'ADMIN_ROLE'     
+    }
+     
+
+     
       
 
 
-      //console.log(newUser);
-      console.log(newPatient)
-      await dispatch(registerUser(newUser))
-      await dispatch(registerPatient(newPatient))
+
+      
       
       
     }
 
     
-   
+    useEffect(()=>{
+      dispatch(getDoctors());
+      dispatch(getDoctorTypes());
+      
+    },[]);
 
     return (
      
@@ -113,7 +159,7 @@ export const RegisterScreen = () => {
       
       <Formik
             validationSchema={validationSchema}
-            initialValues={{ name: '', email: '', dni:'', userName:'', password: '', phone: '', city:'', address: '', role:'' }}
+            initialValues={{ name: 'Juanito', email: 'juan@gmail.com', dni:'1095098129', userName:'juancho2022', password: '98262005', phone: '3052938911', country:'Colombia', city:'Giron', address: 'Calle Suiza', role:'DOCTOR', img:''}}
             onSubmit={(values)=>handleDispatch(values)}
             //onSubmit={(values)=>console.log(values)}
           >
@@ -154,6 +200,13 @@ export const RegisterScreen = () => {
        placeholder='CIUDAD'
        errors={errors.city} />
 
+<CustomInput
+       onChangeText={handleChange('country')}
+       onBlur={handleBlur('country')}
+       value={values.country}
+       placeholder='COUNTRY'
+       errors={errors.country} />
+
       <CustomInput
        onChangeText={handleChange('phone')}
        onBlur={handleBlur('phone')}
@@ -161,14 +214,27 @@ export const RegisterScreen = () => {
        placeholder='CELULAR'
        errors={errors.phone} />
 
-      <CustomSelector
-      selectedValue={data}
-      setSelectedValue={setData}
+      <CustomSelector 
+      data = {[ 'PACIENTE', 'DOCTOR', 'ADMIN', ]}
+      selectedValue={selectedRole}
+      setSelectedValue={setSelectedRole}
       onChangeText={handleChange('role')}
       onBlur={handleBlur('role')}
       value={values.role}
       errors={errors.role}
       />  
+
+     {selectedRole==='DOCTOR'&&<CustomSelector
+      data = {doctorTypes}
+      selectedValue={selectedDoctorType}
+      setSelectedValue={setSelectedDoctorType}
+      onChangeText={handleChange('doctorType')}
+      onBlur={handleBlur('doctorType')}
+      value={values.doctorType}
+      errors={errors.doctorType}
+      /> } 
+
+
       
       <CustomInput
        onChangeText={handleChange('userName')}
@@ -186,8 +252,16 @@ export const RegisterScreen = () => {
        errors={errors.password} 
        toggleIcon={toggleIcon}
        setToggleIcon={setToggleIcon}/>
-      
-      
+
+       <View style={{alignItems:'center'}}>
+        <Image style={{width:100, height:100, borderRadius:100, marginVertical:10}} source= { values.img? {uri: values.img} : require( "../../assets/Images/profile.png") } />
+        </View>        
+      <CustomInput
+       onChangeText={handleChange('img')}
+       onBlur={handleBlur('img')}
+       value={values.img}
+       placeholder='URL FOTO'
+       errors={errors.img} />
 
 <CustomButton 
       title='Confirmar'

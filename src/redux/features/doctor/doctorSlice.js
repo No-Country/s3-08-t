@@ -24,7 +24,7 @@ const doctorSlice = createSlice({
         [getDoctors.fulfilled]: (state, { payload }) => {
             state.loading = false
             state.success = true 
-            state.doctors = payload.userDoctor
+            state.doctors = payload.doctorData
             
           },
         [getDoctors.rejected]: (state, { payload }) => {
