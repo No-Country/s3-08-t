@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
     },
     flex1: {
         flex: 1
+    },
+    capitalice:{
+        textTransform:'capitalize'
     }
     
   });
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
        mb24,
        whiteText,
        smallExtra,
-       ml6,flex1
+       ml6,flex1,capitalice
     }) {
     
     const style = [

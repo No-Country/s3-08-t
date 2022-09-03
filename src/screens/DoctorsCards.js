@@ -1,6 +1,6 @@
 
 import { View, Text, ScrollView, SafeAreaView, StyleSheet } from 'react-native'
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { DoctorCard } from '../components/DoctorCard';
 import Greting from '../components/Greting'
 import Footer from '../components/Footer';
@@ -11,9 +11,9 @@ import { useSelector } from 'react-redux';
 
 
 export const DoctorsCards = () => {
-    const doctors = useSelector(state=>state.doctor.doctors);
+    const doctors = useSelector(state => state.doctor.doctors);
     console.log(doctors);
-    const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
+    const { dni, name, img = "https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs" } = useSelector(state => state.user.sesionInfo.pat)
 
 
     return (
@@ -22,21 +22,31 @@ export const DoctorsCards = () => {
         <SafeAreaView>
             <ScrollView >
                 <View style={styles.container}>
-                <Greting name= {name} />
-      
+                    <Greting name={name} />
+
                 </View>
                 <View style={styles.titleCtn}>
                     <Text style={styles.title}>Marcar Citas {'>'} Especialidad {'>'} Doctor</Text>
-                    
+
                 </View>
                 <View style={styles.cardsContainer}>
-                  
+
                     {doctors.map(doctor =>
-                        <DoctorCard key={doctor.uid} id={doctor.uid} name={doctor.doctorName} especialidad={doctor.type}  />
+                        <DoctorCard
+                            key={doctor.uid}
+                            id={doctor.uid}
+                            name={doctor.doctorName}
+                            especialidad={doctor.type}
+                            phone={doctor.doctorPhone}
+                            address ={doctor.doctorAddress}
+                            city ={doctor.doctorCity}
+                            country= {doctor.doctorCountry}
+                            email={doctor.doctorEmail}
+                        />
                     )
 
                     }
-                    
+
                 </View>
 
             </ScrollView>
@@ -64,10 +74,10 @@ const styles = StyleSheet.create({
     cardsContainer: {
         width: 300,
         justifyContent: 'center',
-        
+
         width: 300,
         marginLeft: 10,
-        
+
     },
     container: {
         flex: 1,

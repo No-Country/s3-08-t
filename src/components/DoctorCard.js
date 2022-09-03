@@ -5,22 +5,25 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-
-
-
-
-
-
-
-
-
 export const DoctorCard = (props) => {
 
     const navigation = useNavigation();
 
     return (
 
-        <TouchableOpacity onPress={()=> navigation.navigate("sobreDr")}>
+        <TouchableOpacity onPress={() => navigation.navigate("sobreDr",
+            {
+                id: props.id,
+                name:props.name,
+                doctorType:props.especialidad,
+                phone:props.phone,
+                address:props.address,
+                city:props.city,
+                country:props.country,
+                email:props.email
+
+            }
+        )}>
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.styledCard}>
@@ -29,7 +32,7 @@ export const DoctorCard = (props) => {
                             <View>
                                 <Text style={styles.boldDoctorText}>Doctor {props.name}</Text>
                                 <Text style={styles.doctorTypeText}>Especialidad {props.especialidad}</Text>
-                                <Text style={styles.doctorTypeText}>Doctor Id {props.id}</Text>                                
+
                             </View>
 
                             <View style={styles.iconBox}>
@@ -40,7 +43,7 @@ export const DoctorCard = (props) => {
                     </View>
                 </ScrollView>
             </SafeAreaView>
-        </TouchableOpacity>    
+        </TouchableOpacity>
     )
 }
 
