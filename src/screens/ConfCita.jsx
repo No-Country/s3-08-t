@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
 
-const ConfCita = ({dateSelected}) => {
+const ConfCita = (props) => {
     const {dni, name, email, phoneNumber, address, city, country, uid, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -33,10 +33,10 @@ const ConfCita = ({dateSelected}) => {
                     <Image  style={styles.image} source= {require("../../assets/Images/check.png")}/>
                 </View>
                 <View style= {{marginTop: 12}}>
-                <StyledText medium secondary poppinsBold>Fecha: <StyledText robotoRegular medium primary>{dateSelected.date} </StyledText> </StyledText>
-                <StyledText medium secondary poppinsBold>Horario: <StyledText robotoRegular medium primary>{dateSelected.hour} </StyledText> </StyledText>
-                <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>Marco Souza </StyledText> </StyledText>
-                <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>Cardiologista</StyledText></StyledText>
+                <StyledText medium secondary poppinsBold>Fecha: <StyledText robotoRegular medium primary>{'05-09-22'} </StyledText> </StyledText>
+                <StyledText medium secondary poppinsBold>Horario: <StyledText robotoRegular medium primary>{'14:00'} </StyledText> </StyledText>
+                <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>Joshua Agudelo </StyledText> </StyledText>
+                <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>Ginecologo</StyledText></StyledText>
                 </View>
             </View>
         </ScrollView>

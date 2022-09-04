@@ -9,17 +9,17 @@ import * as RootNavigation  from "../../RootNavigation";
 import {useSelector} from 'react-redux';
 import {useDispatch} from 'react-redux';
 import { getDoctors, getDoctorTypes } from '../redux/features/doctor/doctorActions';
+import { registerInquiry } from '../redux/features/inquiry/inquiryActions';
 
 
 const Calendario = (props) => {
   const dispatch = useDispatch();
   const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
+  const selectedDoctor = useSelector(state=>state.doctor.selectedDoctor);
+  const selectedPatient = useSelector(state=>state.patient.selectedPatient); 
+  const selectedSpeciality = useSelector(state=>state.inquiry.selectedSpeciality); 
 
-  useEffect(()=>{
-    dispatch(getDoctors());
-    dispatch(getDoctorTypes());
-    
-  },[]);
+  
   const [selectedDate, setSelectedDate] = useState();
   const [selectedHour, setSelectedHour] = useState();
 
@@ -30,11 +30,25 @@ const Calendario = (props) => {
 
   const confirm = () => {
     console.log(selectedDate, selectedHour)
-    props.setDateSelectedFunction({
-      'date': selectedDate.dateString,
-      'hour': selectedHour
-    });
-    RootNavigation.navigate("ConfirmaCita");
+    //props.setDateSelectedFunction({
+    //  'date': selectedDate.dateString,
+    //  'hour': selectedHour
+    //});
+
+    
+      
+    dispatch(registerInquiry(
+      {
+        patient: {
+        _id: selectedPatient
+      },
+      doctor: {
+        _id: selectedDoctor.id
+      },
+      dateInquiry: "20-10-2022 8:30 AM"
+    }
+    ))
+    RootNavigation.navigate("ConfirmaCita",{date:selectedDate, hour:selectedHour});
   }
 
   var today = new Date().toISOString().split('T')[0];
@@ -73,8 +87,8 @@ const Calendario = (props) => {
               <View style= {{marginBottom: 230, marginTop: 12}}>
                   <StyledText medium secondary poppinsBold>Fecha:<StyledText robotoRegular medium primary> {selectedDate?.dateString} </StyledText> </StyledText>
                   <StyledText medium secondary poppinsBold>Horario: <StyledText robotoRegular medium primary>{selectedHour}</StyledText> </StyledText>
-                  <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>Marco Souza </StyledText> </StyledText>
-                  <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>Cardiologista</StyledText></StyledText>
+                  <StyledText medium secondary poppinsBold>Doctor: <StyledText robotoRegular  medium primary>{selectedDoctor.name} </StyledText> </StyledText>
+                  <StyledText medium secondary poppinsBold>Especialidad: <StyledText robotoRegular  medium primary>{selectedSpeciality}</StyledText></StyledText>
                 <TouchableOpacity onPress= {clearDate} style={[styles.box, styles.center,styles.mt24]}>
                     <Text style= {{fontSize: 25, color: "white"}}>Cambiar Fecha</Text>
                 </TouchableOpacity>
@@ -91,6 +105,7 @@ const Calendario = (props) => {
         
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -125,4 +140,4 @@ const styles = StyleSheet.create({
   }
   
 })
-export default Calendario
+export default Calendario;

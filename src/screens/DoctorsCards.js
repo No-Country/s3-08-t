@@ -5,16 +5,30 @@ import { DoctorCard } from '../components/DoctorCard';
 import Greting from '../components/Greting'
 import Footer from '../components/Footer';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native'; 
+import {selectSpeciality} from '../redux/features/inquiry/inquirySlice';
+import {useDispatch} from 'react-redux';
 
 
 
 
 
-export const DoctorsCards = () => {
-    const doctors = useSelector(state => state.doctor.doctors);
-    console.log(doctors);
-    const { dni, name, img = "https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs" } = useSelector(state => state.user.sesionInfo.pat)
 
+export const DoctorsCards = ({route, navigation}) => {
+    const doctors = useSelector(state=>state.doctor.doctors);
+    const dispatch = useDispatch();
+    //console.log(route.params.speciality);
+
+
+
+    const filterDoctors = doctors.filter(doctor=>doctor.type.includes(route.params.speciality));
+    console.log(filterDoctors)
+    const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
+    const routes = useNavigation;
+    
+    useEffect(()=>{
+        dispatch(selectSpeciality(route.params.speciality))
+    },[])
 
     return (
 
@@ -31,18 +45,10 @@ export const DoctorsCards = () => {
                 </View>
                 <View style={styles.cardsContainer}>
 
-                    {doctors.map(doctor =>
-                        <DoctorCard
-                            key={doctor.uid}
-                            id={doctor.uid}
-                            name={doctor.doctorName}
-                            especialidad={doctor.type}
-                            phone={doctor.doctorPhone}
-                            address ={doctor.doctorAddress}
-                            city ={doctor.doctorCity}
-                            country= {doctor.doctorCountry}
-                            email={doctor.doctorEmail}
-                        />
+                  
+                    {filterDoctors.map(doctor =>
+                        <DoctorCard key={doctor.uid} id={doctor.uid} name={doctor.doctorName} especialidad={doctor.type}  />
+
                     )
 
                     }

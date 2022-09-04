@@ -5,6 +5,7 @@ import { getDoctors, getDoctorTypes } from './doctorActions';
 const initialState = {
     doctors:[],
     doctorTypes:[],
+    selectedDoctor:null,
     success: false,
     loading:false,
     error: null,
@@ -14,6 +15,9 @@ const doctorSlice = createSlice({
     name:'doctor',
     initialState,
     reducers:{
+      selectDoctor: (state, action) =>{
+        state.selectedDoctor = action.payload;
+      }
 
     },
     extraReducers:{
@@ -55,5 +59,5 @@ const doctorSlice = createSlice({
 })
 
 
-
+export const {selectDoctor} = doctorSlice.actions;
 export default doctorSlice.reducer

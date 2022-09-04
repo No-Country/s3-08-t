@@ -10,12 +10,12 @@ import { useSelector, useDispatch} from 'react-redux';
 import { CustomInput } from '../components/CustomInput';
 import { CustomSelector } from '../components/CustomSelector';
 import { BackForwardButton } from '../components/BackForwardButton';
-import { transform } from 'lodash';
 
 
-export const MarcarCitaScreen = () => {
+
+export const MarcarCitaScreen = ({navigation}) => {
   const dispatch= useDispatch();
-  const {name} = useSelector(state=> state.user.sesionInfo.pat);
+  const {name, img} = useSelector(state=> state.user.sesionInfo.pat);
   const doctorTyp = useSelector(state=> state.doctor.doctorTypes);
   const doctorTypes = doctorTyp.map(e=>e.nameType);
   const [selectedSpec, setSelectedSpec] = useState('buscar especialidad');
@@ -26,7 +26,7 @@ export const MarcarCitaScreen = () => {
     <>
         <View style={styles.container}>
            <View style={{flex:1}}>
-            <Greting name={name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
+            <Greting name={name} img={img}/>
             <StyledText medium bold mt24>
                 {"Marcar Citas > Especialidad"}
            </StyledText>
@@ -36,14 +36,10 @@ export const MarcarCitaScreen = () => {
            </View>
            </View>
            
-            
-            
-           
-           
         </View>
         
         <BackForwardButton back={true} backNavigate="paciente"/>
-        {!(selectedSpec==='buscar especialidad')&&<BackForwardButton forward={true} forwardNavigate="Selección de doctor"/>}
+        {!(selectedSpec==='buscar especialidad')&&<BackForwardButton forward={true} forwardNavigate="Selección de doctor" route={{speciality: selectedSpec}}  />}
         <Footer />
         </>
   )

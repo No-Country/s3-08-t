@@ -4,7 +4,9 @@ import StyledText from '../../styles/styleText';
 import DoctorCards from "../screens/DoctorsCards";
 import Greting from '../components/Greting';
 import Footer from '../components/Footer';
-import { useNavigation } from '@react-navigation/native';
+
+import { BackForwardButton } from '../components/BackForwardButton';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -42,18 +44,37 @@ const styles = StyleSheet.create({
 
 })
 
-const SobreDr = ({ route, navigation }) => {
 
-    const { name, doctorType, phone, city, country, address,email } = route.params;
-
+const SobreDr = (props) => {
+    console.log('Entrando a Sobre Dr')
+    console.log(props)
     return (
         <>
-            <ScrollView style={styles.container}>
-                <View >
+        <ScrollView style={styles.container}>
+        <View >
+            
+            <Greting name= "Cesar Galeano"/>
+            <View  style={{justifyContent: "center", alignItems:  "center"}}>
+                <Image style={styles.image} source= { require("../../assets/Images/doctor.png") } />
+            </View>
+            <StyledText  medium bold mt24>
+                {props.route.params.name}
+           </StyledText>
+           <StyledText robotoRegular small primary>
+           {props.route.params.especialidad}
+            </StyledText>
+            <View style={{flexDirection: "row",justifyContent:"space-around", marginTop: 12}}>
+                {/*Square*/}
+                <View  style= {styles.square} >
+                    <StyledText small secondary poppinsBold textAlignCenter >Rating: </StyledText>
+                    <View style= {{flexDirection: "row", justifyContent: "center"}}>
+                        <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                        <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                        <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                        <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                        <Image  style={styles.icon} source= {require("../../assets/Images/star.png")}/>
+                        <StyledText small primary>(4.7)</StyledText>
 
-                    <Greting name="Ezequiel" />
-                    <View style={{ justifyContent: "center", alignItems: "center" }}>
-                        <Image style={styles.image} source={require("../../assets/Images/doctor.png")} />
                     </View>
                     <StyledText medium bold mt24 capitalice>
                         {name}
@@ -95,8 +116,24 @@ const SobreDr = ({ route, navigation }) => {
                         </StyledText>
                     </View>
                 </View>
-            </ScrollView>
-            <Footer />
+
+                <View style= {{flexDirection: "row", marginLeft: 5, marginTop: 12}} >
+                    <Image style={styles.icon} source= { require("../../assets/Images/call.png") }/>
+                    <StyledText small primary>(000)56202020</StyledText>
+                </View>
+                <View>
+                <StyledText  medium bold>
+                   Sobre
+                </StyledText>
+                <StyledText robotoRegular small primary>
+                Ginecologo con 7 años de Experiencia, egresado de la Universidad San Marino.
+                </StyledText>
+                </View>
+        </View>
+        </ScrollView>
+        <BackForwardButton forward={true} forwardNavigate="calendario"  />
+        <Footer />
+
         </>
     )
 }
