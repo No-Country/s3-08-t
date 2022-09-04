@@ -1,6 +1,6 @@
 
 import { View, Text, ScrollView, SafeAreaView, StyleSheet } from 'react-native'
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { DoctorCard } from '../components/DoctorCard';
 import Greting from '../components/Greting'
 import Footer from '../components/Footer';
@@ -13,10 +13,13 @@ import {useDispatch} from 'react-redux';
 
 
 
+
 export const DoctorsCards = ({route, navigation}) => {
     const doctors = useSelector(state=>state.doctor.doctors);
     const dispatch = useDispatch();
     //console.log(route.params.speciality);
+
+
 
     const filterDoctors = doctors.filter(doctor=>doctor.type.includes(route.params.speciality));
     console.log(filterDoctors)
@@ -33,21 +36,23 @@ export const DoctorsCards = ({route, navigation}) => {
         <SafeAreaView>
             <ScrollView >
                 <View style={styles.container}>
-                <Greting name= {name} />
-      
+                    <Greting name={name} />
+
                 </View>
                 <View style={styles.titleCtn}>
                     <Text style={styles.title}>Marcar Citas {'>'} Especialidad {'>'} Doctor</Text>
-                    
+
                 </View>
                 <View style={styles.cardsContainer}>
+
                   
                     {filterDoctors.map(doctor =>
                         <DoctorCard key={doctor.uid} id={doctor.uid} name={doctor.doctorName} especialidad={doctor.type}  />
+
                     )
 
                     }
-                    
+
                 </View>
 
             </ScrollView>
@@ -75,10 +80,10 @@ const styles = StyleSheet.create({
     cardsContainer: {
         width: 300,
         justifyContent: 'center',
-        
+
         width: 300,
         marginLeft: 10,
-        
+
     },
     container: {
         flex: 1,

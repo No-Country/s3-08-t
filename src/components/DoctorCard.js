@@ -8,15 +8,6 @@ import { selectDoctor } from '../redux/features/doctor/doctorSlice';
 
 
 
-
-
-
-
-
-
-
-
-
 export const DoctorCard = (props) => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
@@ -36,7 +27,10 @@ export const DoctorCard = (props) => {
     
     return (
 
+
         <TouchableOpacity onPress={handleNavigation}>
+
+       
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.styledCard}>
@@ -45,7 +39,7 @@ export const DoctorCard = (props) => {
                             <View>
                                 <Text style={styles.boldDoctorText}>Doctor {props.name}</Text>
                                 <Text style={styles.doctorTypeText}>Especialidad {props.especialidad}</Text>
-                                <Text style={styles.doctorTypeText}>Doctor Id {props.id}</Text>                                
+
                             </View>
 
                             <View style={styles.iconBox}>
@@ -56,7 +50,7 @@ export const DoctorCard = (props) => {
                     </View>
                 </ScrollView>
             </SafeAreaView>
-        </TouchableOpacity>    
+        </TouchableOpacity>
     )
 }
 
