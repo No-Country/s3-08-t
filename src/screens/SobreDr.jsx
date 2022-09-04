@@ -4,6 +4,7 @@ import StyledText from '../../styles/styleText';
 import DoctorCards from "../screens/DoctorsCards";
 import Greting from '../components/Greting';
 import Footer from '../components/Footer';
+import { BackForwardButton } from '../components/BackForwardButton';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -42,20 +43,22 @@ const styles = StyleSheet.create({
 })
 
 const SobreDr = (props) => {
+    console.log('Entrando a Sobre Dr')
+    console.log(props)
     return (
         <>
         <ScrollView style={styles.container}>
         <View >
             
-            <Greting name= "Ezequiel"/>
+            <Greting name= "Cesar Galeano"/>
             <View  style={{justifyContent: "center", alignItems:  "center"}}>
                 <Image style={styles.image} source= { require("../../assets/Images/doctor.png") } />
             </View>
             <StyledText  medium bold mt24>
-                Dr. Marco Souza
+                {props.route.params.name}
            </StyledText>
            <StyledText robotoRegular small primary>
-            Cardiologista
+           {props.route.params.especialidad}
             </StyledText>
             <View style={{flexDirection: "row",justifyContent:"space-around", marginTop: 12}}>
                 {/*Square*/}
@@ -85,11 +88,12 @@ const SobreDr = (props) => {
                    Sobre
                 </StyledText>
                 <StyledText robotoRegular small primary>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Ginecologo con 7 años de Experiencia, egresado de la Universidad San Marino.
                 </StyledText>
                 </View>
         </View>
         </ScrollView>
+        <BackForwardButton forward={true} forwardNavigate="calendario"  />
         <Footer />
         </>
     )

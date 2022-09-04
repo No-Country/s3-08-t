@@ -3,13 +3,14 @@ import {View, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS } from '../../styles/colors';
 
-export const BackForwardButton = ({back, backNavigate, forward, forwardNavigate, })=>{
+export const BackForwardButton = ({back, backNavigate, forward, forwardNavigate, route={} })=>{
     const navigation = useNavigation();
+    
     return(
         
         <TouchableOpacity
       style={back? styles.containerBack : styles.containerForward }
-      onPress={back? ()=>navigation.navigate(backNavigate): ()=>navigation.navigate(forwardNavigate)}>
+      onPress={back? ()=>navigation.navigate(backNavigate): ()=>navigation.navigate(forwardNavigate, route)}>
         <Image style={styles.img} source={require('../../assets/search/down-arrow.png')}></Image>
         
       </TouchableOpacity>

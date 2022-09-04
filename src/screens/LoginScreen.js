@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export const LoginScreen = () => {
-const {error, loading, success, userToken} = useSelector(state=>state.user);
+const {error, loading, success, userToken, img} = useSelector(state=>state.user);
 const navigation = useNavigation();
 
 const [toggleIcon, setToggleIcon] = useState(true);

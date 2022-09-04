@@ -13,7 +13,7 @@ import { CustomSelector } from '../components/CustomSelector';
 import { registerPatient } from '../redux/features/patient/patientActions';
 import { ModalNotifications } from '../components/ModalNotifications';
 import { registerUser } from '../redux/features/user/userActions';
-import { getDoctors, getDoctorTypes, registerDoctor } from '../redux/features/doctor/doctorActions';
+import { getDoctors, getDoctorTypes } from '../redux/features/doctor/doctorActions';
 
 
 
@@ -105,7 +105,7 @@ export const RegisterScreen = () => {
           };
 
          await dispatch(registerUser(newUser))
-         //await dispatch(registerPatient(newPatient))
+         await dispatch(registerPatient(newPatient))
 
       }
       else if( selectedRole==='DOCTOR'){

@@ -1,7 +1,10 @@
 import { View, Text, ScrollView, SafeAreaView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { selectPatient } from '../redux/features/patient/patientSlice';
+import { selectDoctor } from '../redux/features/doctor/doctorSlice';
 
 
 
@@ -15,12 +18,25 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export const DoctorCard = (props) => {
-
+    const dispatch = useDispatch();
     const navigation = useNavigation();
+    
+    
 
+    const handleNavigation = async()=>{
+        await dispatch(selectDoctor({
+            id:props.id,
+            name:props.name,
+            type:props.especialidad
+        }));
+        console.log(props.id)
+
+        navigation.navigate("sobreDr",props.id)
+    };
+    
     return (
 
-        <TouchableOpacity onPress={()=> navigation.navigate("sobreDr")}>
+        <TouchableOpacity onPress={handleNavigation}>
             <SafeAreaView>
                 <ScrollView>
                     <View style={styles.styledCard}>

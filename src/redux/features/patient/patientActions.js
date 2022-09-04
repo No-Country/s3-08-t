@@ -38,3 +38,27 @@ export const registerPatient = createAsyncThunk(
         }
     }
   )
+
+  export const getPatients = createAsyncThunk(
+    'patient/get',
+    async () => {
+      try{
+        console.log('Ingresando a Get Patient')
+       
+        const patients = (await axios.get(BASE_URL + '/patient')).data;
+        console.log(patients);
+        //console.log(patient) 
+        return patients;
+        
+        }catch(e){
+          if (e.response && e.response.data.message) {
+            //console.log(e)
+            return e.response.data.message
+
+          } else {
+            return e.message
+          }
+        }
+    }
+  )
+

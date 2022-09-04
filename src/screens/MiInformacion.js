@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import {useSelector} from 'react-redux'
 import Greting from '../components/Greting';
 import StyledText from '../../styles/styleText';
-import {useSelector} from 'react-redux';
 import { CustomButton } from '../components/CustomButton';
 import { COLORS } from '../../styles/colors';
 import {useNavigation} from '@react-navigation/native';
@@ -15,22 +15,24 @@ export const MiInformacion = () => {
     const {dni, name, email, phoneNumber, address, city, country, uid, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
     const navigation = useNavigation();
     const dispatch = useDispatch();
+    
     const handleClickLogout = () => {
         dispatch(cleanUser());
         };
-    return (
-    <>
-    <ScrollView>
-    <View style= {styles.container}>
-    <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
-      <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
-      <StyledText medium  bold mt24 mb24 >Mi Informacion</StyledText>      
-      </View>
-      {/*<Image style={styles.image} source= { img? {uri: img} : require( "../../assets/Images/profile.png") } />*/}
-        
+   
+    return(
+        <>
+        <ScrollView>
+            <View style= {styles.container}>
+                <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
+                    <Greting name= {name} img={img}/>
+                    <StyledText medium  bold mt24 mb24 >Mi Informacion</StyledText>      
+                </View>
+                
+            </View>
             <View style={styles.fieldContainer}>
-            <Text style={styles.fieldLabel}>Nombre: </Text>
-            <Text>{name}</Text>
+                    <Text style={styles.fieldLabel}>Nombre: </Text>
+                    <Text>{name}</Text>
             </View>
             <View style={styles.fieldContainer}>
             <Text style={styles.fieldLabel}>Documento: </Text>
@@ -55,7 +57,7 @@ export const MiInformacion = () => {
             <View style={styles.fieldContainer}>
             <Text style={styles.fieldLabel}>Telefono: </Text>
             <Text>{phoneNumber}</Text>
-            
+            </View>
             <TouchableOpacity 
             style= {[styles.button,styles.row]}
             onPress={handleClickLogout} >
@@ -64,17 +66,38 @@ export const MiInformacion = () => {
                 
             </TouchableOpacity>
             
+        </ScrollView>
+         <Footer/>
+         </>
+    )
+    
+   
+}
+
+
+/*  return (
+    <>
+    
+    
+      
+        
+           
+            
+            
+            
             </View>
 
             <CustomButton title='Editar' onPress={()=>console.log('Editando Info')} backColor={COLORS.secondary} colorText={COLORS.white} />
             
  
     </View>
-    </ScrollView>
+    
     <Footer/>
     </>
-  )
-}
+  )*/
+
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -117,3 +140,5 @@ const styles = StyleSheet.create({
 
 
 });
+
+

@@ -12,17 +12,23 @@ import  DoctorCard   from "../components/DoctorCard"
 import DoctorsCards from './DoctorsCards';
 import {useSelector} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import { getPatients } from '../redux/features/patient/patientActions';
+import { selectPatient } from '../redux/features/patient/patientSlice';
 
 
 export const PacienteScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {dni, name, img="https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"} = useSelector(state=>state.user.sesionInfo.pat)
+  const {dni, name,uid} = useSelector(state=>state.user.sesionInfo.pat);
+  const img = useSelector(state=>state.user.sesionInfo.user.img);
+  const patients = useSelector(state=>state.patient.patients).patientsData;
 
-  useEffect(async()=>{
+  useEffect(()=>{
 
-    await dispatch(getDoctors())
-    await dispatch(getDoctorTypes())
+    dispatch(getDoctors());
+    dispatch(getDoctorTypes());
+    dispatch(getPatients());
+    dispatch(selectPatient(uid));
 
   },[])
 
@@ -31,7 +37,7 @@ export const PacienteScreen = () => {
     <>
     <ScrollView >
       <View style={{flex:1, marginTop:40, marginHorizontal:10}}>
-      <Greting name= {name} img={"https://media-exp1.licdn.com/dms/image/D4D35AQEce8GvFyg66A/profile-framedphoto-shrink_200_200/0/1650208419921?e=1662300000&v=beta&t=eYMKeC0kowgXgQhJfT7KZQ4q6dizfjvGw5SoZULH2Zs"}/>
+      <Greting name= {name} img={img}/>
       <StyledText medium  bold mt24 mb24 >Mi Historial</StyledText>      
       </View>
       
